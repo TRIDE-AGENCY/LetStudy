@@ -69,7 +69,7 @@
                                 <p class="text-white fs-5 mb-4 fw-semibold text-uppercase"
                                     style="letter-spacing: 0.08em;">Organisasi</p>
                                 <div class="d-flex flex-column gap-2">
-                                    <a href="/about" class="btn-link-footer fs-5">Tentang</a>
+                                    <a href="/about-us" class="btn-link-footer fs-5">Tentang</a>
                                     <a href="/our-team" class="btn-link-footer fs-5">Tim LetStudy</a>
                                     <a href="/contact-us" class="btn-link-footer fs-5">Hubungi Kami</a>
                                     <a href="#" target="_blank" class="btn-link-footer fs-5">Komunitas</a>

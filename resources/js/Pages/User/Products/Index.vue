@@ -463,7 +463,7 @@
                             <a class="btn btn-sm btn-myprimary fs-5">
                                 Gabung Komunitas
                             </a>
-                            <a class="btn btn-sm btn-mysecondary fs-5">
+                            <a href="/contact-us" class="btn btn-sm btn-mysecondary fs-5">
                                 Hubungi Kami
                             </a>
                         </div>

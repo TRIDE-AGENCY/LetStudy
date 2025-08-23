@@ -60,8 +60,33 @@
                                 <a :class="{ 'active': $page.url.startsWith('/faqs') }"
                                     class="menu-link nav-link navbar-link" data-kt-drawer-dismiss="true" href="/faqs">FAQs</a>
                             </div>
-                            <div class="menu-item">
-                                <a class="menu-link nav-link navbar-link" data-kt-drawer-dismiss="true" href="#">Tentang</a>
+                            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" 
+                                class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+                                <span :class="{ 'active': $page.url.startsWith('/about') || $page.url === '/our-team' || $page.url === '/contact-us'}"
+                                    class="menu-link nav-link navbar-link">
+                                    <span class="menu-title">Tentang</span>
+                                    <span class="menu-arrow d-lg-none"></span>
+                                </span>
+                                <div class="menu-sub menu-sub-lg-down-accordion rounded-4 menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-175px">
+                                    <div class="menu-item">
+                                        <a :class="{ 'active': $page.url === '/about-us' }"
+                                            class="menu-link nav-link navbar-link align-items-center gap-3" href="/about-us">
+                                            <span class="menu-title">Tentang Kami</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a :class="{ 'active': $page.url === '/our-team' }"
+                                            class="menu-link nav-link navbar-link align-items-center gap-3" href="/our-team">
+                                            <span class="menu-title">TIm LetStudy</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a :class="{ 'active': $page.url === '/contact-us' }"
+                                            class="menu-link nav-link navbar-link align-items-center gap-3" href="/contact-us">
+                                            <span class="menu-title">Hubungi Kami</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <a v-if="isLoggedIn" data-kt-drawer-dismiss="true" href="/member-area" class="btn btn-sm btn-myprimary pe-3 fs-5 d-inline-flex d-lg-none gap-2 align-items-center justify-content-center">

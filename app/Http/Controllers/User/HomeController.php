@@ -208,6 +208,18 @@ class HomeController extends Controller
         ]);
     }
 
+    public function about()
+    {
+        $donate = Donate::with(['achievement1', 'achievement2', 'achievement3'])->first();
+
+        $sosmed = Sosmed::find(1);
+
+        return inertia('User/About/Index', [
+            'donate' => $donate,
+            'sosmed' => $sosmed,
+        ]);
+    }
+
     public function teams()
     {
         $teams = Team::orderByRaw("

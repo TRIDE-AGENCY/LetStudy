@@ -264,6 +264,7 @@ Route::get('/', \App\Http\Controllers\User\HomeController::class)->name('user.ho
 Route::get('/blogs', [\App\Http\Controllers\User\HomeController::class, 'blogs'])->name('user.blog');
 Route::get('/blogs/{blog:slug}', [\App\Http\Controllers\User\HomeController::class, 'blogShow'])->name('user.blog.show');
 Route::get('/faqs', [\App\Http\Controllers\User\HomeController::class, 'faqs'])->name('user.faq');
+Route::get('/about-us', [\App\Http\Controllers\User\HomeController::class, 'about'])->name('user.about');
 Route::get('/our-team', [\App\Http\Controllers\User\HomeController::class, 'teams'])->name('user.team');
 Route::get('/contact-us', [\App\Http\Controllers\User\HomeController::class, 'contact'])->name('user.contact');
 Route::post('/contact-us', [\App\Http\Controllers\User\HomeController::class, 'contactStore'])->name('user.contact.store');

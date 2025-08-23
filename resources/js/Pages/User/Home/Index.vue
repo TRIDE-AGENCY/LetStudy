@@ -483,14 +483,14 @@
                         <h2 class="text-dark lh-sm fs-3x fw-bold mb-4 mb-md-6">
                             LetStudy Together!
                         </h2>
-                        <p class="text-gray-600 fs-4 mw-600px mb-10 opacity-75">
+                        <p class="text-gray-600 fs-4 mw-600px mb-10">
                             Ruang untuk saling dukung, saling berbagi, saling belajar, dan saling tumbuh bersama setiap waktu.
                         </p>
                         <div class="d-flex gap-4 justify-content-center justify-content-lg-start">
                             <a class="btn btn-sm btn-myprimary fs-5">
                                 Gabung Komunitas
                             </a>
-                            <a class="btn btn-sm btn-mysecondary fs-5">
+                            <a href="/contact-us" class="btn btn-sm btn-mysecondary fs-5">
                                 Hubungi Kami
                             </a>
                         </div>

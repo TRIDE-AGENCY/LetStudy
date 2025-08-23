@@ -63,8 +63,21 @@
                         </div>
                     </div>
                     <div class="menu-item">
-                        <Link class="menu-link menu-link-mysecondary"
-                            :class="{ 'active': $page.url.startsWith('/admin/products') }" href="/admin/products">
+                        <a class="menu-link menu-link-mysecondary"
+                            :class="{ 'active': $page.url.startsWith('/admin/products') }" href="/about-us">
+                        <span class="menu-icon">
+                            <i
+                                :class="[$page.url.startsWith('/admin/products') ? 'ri-service-fill' :
+                                    'ri-service-line', 'fs-2'
+                                ]"></i>
+                        </span>
+                        <span
+                            :class="[$page.url.startsWith('/admin/products') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Tentang LetStudy</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a class="menu-link menu-link-mysecondary"
+                            :class="{ 'active': $page.url.startsWith('/admin/products') }" href="/contact-us">
                         <span class="menu-icon">
                             <i
                                 :class="[$page.url.startsWith('/admin/products') ? 'ri-customer-service-2-fill' :
@@ -73,20 +86,7 @@
                         </span>
                         <span
                             :class="[$page.url.startsWith('/admin/products') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Hubungi Kami</span>
-                        </Link>
-                    </div>
-                    <div class="menu-item">
-                        <Link class="menu-link menu-link-mysecondary"
-                            :class="{ 'active': $page.url.startsWith('/admin/products') }" href="/admin/products">
-                        <span class="menu-icon">
-                            <i
-                                :class="[$page.url.startsWith('/admin/products') ? 'ri-service-fill' :
-                                    'ri-service-line', 'fs-2'
-                                ]"></i>
-                        </span>
-                        <span
-                            :class="[$page.url.startsWith('/admin/products') ? 'fw-bold' : 'fw-semibold', 'menu-title fs-5']">Dukung Kami</span>
-                        </Link>
+                        </a>
                     </div>
                     <div class="menu-item">
                         <Link class="menu-link menu-link-mysecondary"

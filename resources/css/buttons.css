@@ -1,0 +1,385 @@
+/* BUTTON */
+
+.btn-myprimary,
+.btn-myprimary i {
+    background-color: var(--bs-myprimary-400) !important;
+    color: var(--bs-white) !important;
+}
+
+.btn-myprimary:hover,
+.btn-myprimary:hover i {
+    background-color: var(--bs-myprimary-500) !important;
+}
+
+.btn-myprimary-outline,
+.btn-myprimary-outline i {
+    background-color: transparent !important;
+    color: var(--bs-myprimary-400) !important;
+    border: 1px dashed var(--bs-myprimary-400) !important;
+}
+
+.btn-myprimary-outline:hover,
+.btn-myprimary-outline:hover i {
+    background-color: var(--bs-myprimary-50) !important;
+    color: var(--bs-myprimary-500) !important;
+    border: 1px dashed var(--bs-myprimary-500) !important;
+}
+
+.btn-link-myprimary,
+.btn-link-myprimary i {
+    color: var(--bs-myprimary-400) !important;
+}
+
+.btn-link-myprimary:hover,
+.btn-link-myprimary:hover i {
+    color: var(--bs-myprimary-500) !important;
+}
+
+.btn-link-white,
+.btn-link-white i {
+    color: var(--bs-white) !important;
+}
+
+.btn-link-footer {
+    color: var(--bs-white) !important;
+    opacity: .75;
+}
+
+.btn-link-footer:hover {
+    opacity: 1;
+}
+
+.btn-link-footer-light {
+    color: var(--bs-white) !important;
+    opacity: .5;
+}
+
+.btn-link-footer-light:hover {
+    opacity: .75;
+}
+
+.btn-link-arrow i {
+    display: inline-block;
+}
+
+.btn-link-arrow:hover i {
+    transform: translateX(4px) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.btn-mysecondary,
+.btn-mysecondary i {
+    background-color: var(--bs-myprimary-100) !important;
+    color: var(--bs-myprimary-500) !important;
+}
+
+.btn-mysecondary:hover,
+.btn-mysecondary:hover i {
+    background-color: var(--bs-myprimary-200) !important;
+    color: var(--bs-myprimary-600) !important;
+}
+
+.btn-mysecondary-light,
+.btn-mysecondary-light i {
+    background-color: transparent !important;
+    color: var(--bs-myprimary-400) !important;
+}
+
+.btn-mysecondary-light:hover,
+.btn-mysecondary-light:hover i {
+    background-color: var(--bs-myprimary-100) !important;
+color: var(--bs-myprimary-500) !important;
+}
+
+.btn-mydanger,
+.btn-mydanger i {
+    background-color: var(--bs-mydanger-100) !important;
+    color: var(--bs-mydanger-600) !important;
+}
+
+.btn-mydanger:hover,
+.btn-mydanger:hover i {
+    background-color: var(--bs-mydanger-200) !important;
+    color: var(--bs-mydanger-700) !important;
+}
+
+.btn-mydanger-solid,
+.btn-mydanger-solid i {
+    background-color: var(--bs-mydanger-400) !important;
+    color: var(--bs-white) !important;
+}
+
+.btn-mydanger-solid:hover,
+.btn-mydanger-solid:hover i {
+    background-color: var(--bs-mydanger-500) !important;
+}
+
+.btn-mydanger-light,
+.btn-mydanger-light i {
+    background-color: transparent !important;
+    color: var(--bs-mydanger-500) !important;
+}
+
+.btn-mydanger-light:hover,
+.btn-mydanger-light:hover i {
+    background-color: var(--bs-mydanger-100) !important;
+    color: var(--bs-mydanger-600) !important;
+}
+
+.btn-mysuccess,
+.btn-mysuccess i {
+    background-color: var(--bs-mysuccess-100) !important;
+    color: var(--bs-mysuccess-600) !important;
+}
+
+.btn-mysuccess:hover,
+.btn-mysuccess:hover i {
+    background-color: var(--bs-mysuccess-200) !important;
+    color: var(--bs-mysuccess-700) !important;
+}
+
+.btn-mysuccess-solid,
+.btn-mysuccess-solid i {
+    background-color: var(--bs-mysuccess-400) !important;
+    color: var(--bs-white) !important;
+}
+
+.btn-mysuccess-solid:hover,
+.btn-mysuccess-solid:hover i {
+    background-color: var(--bs-mysuccess-500) !important;
+}
+
+.btn-mysuccess-light,
+.btn-mysuccess-light i {
+    background-color: transparent !important;
+    color: var(--bs-mysuccess-500) !important;
+}
+
+.btn-mysuccess-light:hover,
+.btn-mysuccess-light:hover i {
+    background-color: var(--bs-mysuccess-100) !important;
+    color: var(--bs-mysuccess-600) !important;
+}
+
+.btn-mywarning-solid,
+.btn-mywarning-solid i {
+    background-color: var(--bs-mywarning-400) !important;
+    color: var(--bs-white) !important;
+}
+
+.btn-mywarning-solid:hover,
+.btn-mywarning-solid:hover i {
+    background-color: var(--bs-mywarning-500) !important;
+}
+
+.btn-mylight,
+.btn-mylight i {
+    background-color: var(--bs-gray-200) !important;
+    color: var(--bs-gray-600) !important;
+}
+
+.btn-mylight:hover,
+.btn-mylight:hover i {
+    background-color: var(--bs-gray-300) !important;
+    color: var(--bs-gray-700) !important;
+}
+
+.btn-mylighten,
+.btn-mylighten i {
+    background-color: transparent !important;
+    color: var(--bs-gray-600) !important;
+}
+
+.btn-mylighten:hover,
+.btn-mylighten:hover i {
+    background-color: var(--bs-gray-300) !important;
+    color: var(--bs-gray-700) !important;
+}
+
+.btn-mylightest,
+.btn-mylightest i {
+    background-color: transparent !important;
+    color: var(--bs-gray-600) !important;
+}
+
+.btn-mylightest:hover,
+.btn-mylightest:hover i {
+    background-color: var(--bs-gray-100) !important;
+    color: var(--bs-gray-700) !important;
+}
+
+.btn-mywhite,
+.btn-mywhite i {
+    background-color: var(--bs-white) !important;
+    opacity: .75;
+    color: var(--bs-gray-600) !important;
+}
+
+.btn-mywhite:hover,
+.btn-mywhite:hover i {
+    opacity: 1;
+}
+
+.btn-outline-myprimary {
+    outline: 2px solid var(--bs-myprimary-400) !important;
+    outline-offset: 1px;
+}
+
+.btn-outline-mysuccess {
+    outline: 2px solid var(--bs-mysuccess-400) !important;
+    outline-offset: 1px;
+}
+
+.btn-outline-mydanger {
+    outline: 2px solid var(--bs-mydanger-400) !important;
+    outline-offset: 1px;
+}
+
+.btn-outline-mywarning {
+    outline: 2px solid var(--bs-mywarning-400) !important;
+    outline-offset: 1px;
+}
+
+.btn-link-mywarning,
+.btn-link-mywarning i {
+    color: var(--bs-mywarning-400) !important;
+}
+
+.btn-link-mywarning:hover,
+.btn-link-mywarning:hover i {
+    color: var(--bs-mywarning-500) !important;
+}
+
+.btn.btn-active-myprimary.active,
+.btn.btn-active-myprimary:hover.active:hover {
+    border-color: var(--bs-myprimary-400) !important;
+    background-color: var(--bs-myprimary-400) !important;
+    color: var(--bs-white) !important;
+}
+
+
+.btn.btn-active-myprimary:hover:not(.btn-active) {
+    border-color: var(--bs-myprimary-100) !important;
+    background-color: var(--bs-myprimary-100) !important;
+    color: var(--bs-myprimary-500) !important;
+}
+
+.btn-tryout-active,
+.btn-tryout-correct {
+    outline-offset: -1px;
+    outline: 2px solid var(--bs-myprimary-400) !important;
+    background-color: var(--bs-myprimary-100) !important;
+}
+
+.btn-tryout-incorrect {
+    outline-offset: -1px;
+    outline: 2px solid var(--bs-mydanger-400) !important;
+    background-color: var(--bs-mydanger-100) !important;
+}
+
+/* BUTTON MENU SIDEBAR ADMIN */
+
+.menu-link-mysecondary .menu-icon > i,
+.menu-link-mysecondary .menu-title {
+    color: var(--bs-gray-600) !important;
+}
+
+.menu-link-mysecondary .menu-arrow::after {
+    background-color: var(--bs-gray-600) !important;
+}
+
+.menu-link-mysecondary:hover {
+    background-color: var(--bs-gray-200) !important;
+}
+
+.menu-link-mysecondary:hover .menu-icon > i,
+.menu-link-mysecondary:hover .menu-title {
+    color: var(--bs-gray-700) !important;
+}
+
+.menu-link-mysecondary:hover .menu-arrow::after {
+    background-color: var(--bs-gray-700) !important;
+}
+
+.menu-link-mysecondary.active {
+    background-color: var(--bs-myprimary-100) !important;
+}
+
+.menu-link-mysecondary.active:hover {
+    background-color: var(--bs-myprimary-200) !important;
+}
+
+.text-mysecondary,
+.menu-link-mysecondary.active .menu-icon > i,
+.menu-link-mysecondary.active .menu-title {
+    color: var(--bs-myprimary-600) !important;
+}
+
+.menu-link-mysecondary.active:hover .menu-icon > i,
+.menu-link-mysecondary.active:hover .menu-title {
+    color: var(--bs-myprimary-700) !important;
+}
+
+.menu-state-title-primary .menu-item .menu-link.active .menu-title {
+    color: var(--bs-myprimary-400) !important;
+}
+
+.sub-menu-link:hover {
+    background: linear-gradient(to right, var(--bs-gray-200), var(--bs-white)) !important;
+}
+
+.sub-menu-link.active {
+    background: linear-gradient(to right, var(--bs-myprimary-100), var(--bs-white)) !important;
+}
+
+.sub-menu-link.active:hover {
+    background: linear-gradient(to right, var(--bs-myprimary-200), var(--bs-white)) !important;
+}
+
+.nav-link {
+    font-weight: 400;
+    padding: .75rem 0 !important;
+}
+
+.nav-link:hover {
+    color: var(--bs-gray-600) !important;
+    border-bottom: 4px solid var(--bs-myprimary-200) !important;
+}
+
+.nav-link.active {
+    font-weight: 600;
+    color: var(--text-dark) !important;
+    border-bottom: 4px solid var(--bs-myprimary-400) !important;
+}
+
+.nav-link.active:hover {
+    border-bottom: 4px solid var(--bs-myprimary-500) !important;
+}
+
+.nav-line-tabs {
+    border-bottom-color: var(--bs-gray-300) !important;
+}
+
+.navbar-link {
+    padding: 0.75rem !important;
+}
+
+@media (min-width: 992px) {
+    .navbar-link {
+        padding: 0.75rem 1.5rem  !important; 
+    }
+}
+
+.navbar-link:hover,
+.navbar-link.active,
+.navbar-link.active:hover {
+    border: none !important;
+}
+
+.card-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}

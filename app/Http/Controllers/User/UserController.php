@@ -1,0 +1,138 @@
+<?php
+
+namespace App\Http\Controllers\User;
+
+use App\Http\Controllers\Controller;
+use App\Models\Education;
+use App\Models\Product;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    public function userRegister()
+    {
+        $educations = Education::all();
+
+        return inertia('Auth/User/Register', [
+            'educations' => $educations,
+        ]);
+    }
+
+    public function userRegisterStore(Request $request)
+    {
+        $request->validate([
+            'name'          => 'required|string',
+            'gender'        => 'required|string',
+            'birth_place'   => 'nullable',
+            'birth_date'    => 'nullable',
+            'education'     => 'required',
+            'email'         => 'required|unique:users',
+            'password'      => 'required|confirmed',
+        ], [
+            'gender.required' => 'Jenis kelamin tidak boleh kosong.',
+            'email.unique' => 'Email ini sudah digunakan, silakan pakai email lain.',
+            'password.required' => 'Kata sandi tidak boleh kosong.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+        ]);
+
+        User::create([
+            'name'          => $request->name,
+            'role'          => 'User',
+            'gender'        => $request->gender,
+            'birth_place'   => $request->birth_place,
+            'birth_date'    => $request->birth_date,
+            'education'     => $request->education,
+            'email'         => $request->email,
+            'password'      => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('user.login.index');
+    }
+
+    public function userLogin()
+    {
+        return inertia('Auth/User/Login', []);
+    }
+
+    public function userLoginStore(Request $request)
+    {
+        $request->validate([
+            'email'     => 'required|email',
+            'password'  => 'required',
+        ], [
+            'email.required'    => 'Alamat email wajib diisi.',
+            'email.email'       => 'Format email tidak valid.',
+            'password.required' => 'Kata sandi wajib diisi.',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return redirect()->back()->with('error', 'Email atau kata sandi yang Anda masukkan salah.');
+        }
+
+        auth()->guard('web')->login($user);
+
+        return redirect()->route('user.home');
+    }
+
+    public function userDetail()
+    {
+        $menuProducts = Product::with('subProducts')->get();
+
+        $userId = auth()->guard('web')->user()->id;
+        $user = User::find($userId);
+        $educations = Education::all();
+
+        return inertia('User/User/Index', [
+            'menuProducts' => $menuProducts,
+            'user' => $user,
+            'educations' => $educations,
+        ]);
+    }
+
+    public function userDetailUpdate(Request $request, User $user)
+    {
+        $user = auth()->guard('web')->user();
+        $request->validate([
+            'name'             => 'required|string',
+            'gender'           => 'required|string',
+            'birth_place'      => 'nullable',
+            'birth_date'       => 'nullable',
+            'education'        => 'required',
+            'email'            => 'required|unique:users,email,' . $user->id,
+            'current_password' => 'required_with:password',
+            'password'         => 'nullable|confirmed',
+        ], [
+            'gender.required' => 'Jenis kelamin tidak boleh kosong.',
+            'email.unique' => 'Email ini sudah digunakan, silakan pakai email lain.',
+            'current_password.required_with' => 'Kata sandi lama wajib diisi jika ingin mengganti kata sandi baru.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+        ]);
+
+        if ($request->filled('password')) {
+            if (!Hash::check($request->current_password, $user->password)) {
+                return back()->withErrors(['current_password' => 'Kata sandi lama tidak sesuai.'])->withInput();
+            }
+        }
+
+        $data = [
+            'name'          => $request->name,
+            'gender'        => $request->gender,
+            'birth_place'   => $request->birth_place,
+            'birth_date'    => $request->birth_date,
+            'education'     => $request->education,
+            'email'         => $request->email,
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return redirect()->route('member.user');
+    }
+}

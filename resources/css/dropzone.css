@@ -1,0 +1,20 @@
+.dropzone {
+    background-color: var(--bs-myprimary-50);
+}
+
+.dropzone .dz-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dropzone .dz-remove:hover::after {
+    background-color: var(--bs-myprimary-400);
+}
+
+#usp-dropzone .dz-size,
+#achievement-dropzone .dz-size,
+#support-dropzone .dz-size,
+#testimonial-dropzone .dz-size {
+    display: none !important;
+}

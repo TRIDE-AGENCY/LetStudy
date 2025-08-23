@@ -1,0 +1,79 @@
+<template>
+    <div id="kt_app_header" class="app-header bg-white">
+        <div class="container-fluid d-flex align-items-stretch justify-content-between">
+            <div class="d-flex align-items-center d-lg-none ms-n3 me-2" title="Show sidebar menu">
+                <div class="btn btn-icon btn-myicon w-35px h-35px" id="kt_app_sidebar_mobile_toggle">
+                    <i class="ri-menu-line fs-2"></i>
+                </div>
+            </div>
+            <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+                <a href="#" class="d-lg-none">
+                    <img alt="Logo" src="/assets/media/logos/logo-full-default.png" class="h-30px" />
+                </a>
+            </div>
+            <div class="d-flex align-items-center justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
+                <div></div>
+                <div class="app-navbar-item ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+                    <div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="click"
+                        data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                        <div class="symbol-label fs-5 fw-semibold rounded-pill btn-myprimary">
+                            {{ getInitials($page . props . auth . user . name) }}</div>
+                    </div>
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800
+                        menu-state-bg border border-gray-300 rounded-4 menu-state-color fw-semibold mt-3 py-6 w-300px"
+                        data-kt-menu="true">
+                        <div class="menu-item px-6">
+                            <div class="menu-content d-flex align-items-center p-0">
+                                <div class="symbol symbol-50px me-4">
+                                    <div class="symbol-label fs-2 fw-semibold rounded-pill bg-myprimary text-white">
+                                        {{ getInitials($page . props . auth . user . name) }}</div>
+                                </div>
+                                <div class="d-flex flex-column w-100">
+                                    <p class="fw-bold d-flex align-items-center fs-5 mb-0">
+                                        {{ $page . props . auth . user . name }}
+                                    </p>
+                                    <p class="text-gray-600 fs-7 mb-0">
+                                        {{ $page . props . auth . user . email }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 pt-6 border-bottom border-gray-300"></div>
+                        <div class="menu-item px-6 pt-6">
+                            <Link href="/admin/logout" method="POST" as="button"
+                                class="btn btn-sm btn-mydanger fs-5 w-100 text-start">
+                                Keluar
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import {
+        Link
+    } from '@inertiajs/vue3';
+
+    export default {
+        components: {
+            Link,
+        },
+        methods: {
+            getInitials(name) {
+                if (!name) return '';
+                return name
+                    .split(' ')
+                    .map(n => n[0].toUpperCase())
+                    .join('')
+                    .slice(0, 2);
+            }
+        }
+    }
+</script>
+
+<style>
+
+</style>

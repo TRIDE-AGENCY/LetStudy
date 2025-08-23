@@ -230,9 +230,17 @@
 
             const submitJoinTryout = () => {
                 if (!selectedTryout.value?.tryout) return;
-                    router.post(`/member-area/${props.product.slug}/${props.subProduct.slug}/tryout-join`, {
-                    tryout_id: selectedTryout.value.tryout.id,
-                });
+                router.post(
+                    `/member-area/${props.product.slug}/${props.subProduct.slug}/tryout-join`,
+                    {
+                        tryout_id: selectedTryout.value.tryout.id,
+                    },
+                    {
+                        onSuccess: () => {
+                            window.location.reload();
+                        }
+                    }
+                );
             };
 
             return {

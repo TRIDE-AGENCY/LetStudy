@@ -102,8 +102,9 @@ class HomeController extends Controller
         $tryouts = Tryout::whereHas('subProduct', function ($q) use ($product) {
             $q->where('product_id', $product->id);
         })
-            ->with('subProduct')
-            ->with('questions')
+            ->whereHas('questions')
+            ->with(['subProduct', 'questions'])
+            ->where('status', 'published')
             ->latest()
             ->take(6)
             ->get();
@@ -210,11 +211,12 @@ class HomeController extends Controller
 
     public function about()
     {
+        $achievements = Achievement::all();
         $donate = Donate::with(['achievement1', 'achievement2', 'achievement3'])->first();
-
         $sosmed = Sosmed::find(1);
 
         return inertia('User/About/Index', [
+            'achievements' => $achievements,
             'donate' => $donate,
             'sosmed' => $sosmed,
         ]);

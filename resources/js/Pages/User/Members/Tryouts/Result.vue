@@ -62,7 +62,7 @@
                                                 <p class="fs-5 fw-semibold text-gray-600 mb-2 text-truncate-1 white-space-nowrap">Peringkat</p>
                                                 <div class="d-flex align-items-end gap-2">
                                                     <h1 class="fs-3qx fs-md-2qx mb-0">{{ user_ranking }}</h1>
-                                                    <p class="fs-4 fw-semibold text-gray-400 mb-0 text-truncate-1 white-space-nowrap">/ {{ total_users }} Member</p>
+                                                    <p class="fs-4 fw-semibold text-gray-400 mb-0 text-truncate-1 white-space-nowrap">/ {{ total_users }} Peserta</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,7 +119,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-4 border border-gray-300 mt-6">
+                    <div v-if="can_show_rank" 
+                        class="card rounded-4 border border-gray-300 mt-6">
                         <div class="card-header border-0 p-6 d-flex gap-4 flex-column flex-md-row">
                             <div class="d-flex flex-column flex-grow-1">
                                 <h1 class="fs-2 mb-2">Peringkat Nilai</h1>
@@ -130,7 +131,7 @@
                                     class="d-flex align-items-center position-relative my-1 w-100 w-md-300px">
                                     <i class="ri-search-line position-absolute ms-5 fs-3"></i>
                                     <input type="text" class="form-control form-control-solid ps-13 fs-5"
-                                        placeholder="Cari member disini..." v-model="search" />
+                                        placeholder="Cari peserta disini..." v-model="search" />
                                 </form>
                             </div>
                         </div>
@@ -138,8 +139,8 @@
                             <div class="text-center border-top border-bottom border-gray-300 py-10 px-6" v-if="all_grades.data.length === 0">
                                 <img src="/assets/media/illustrations/empty.png"
                                     alt="Tidak ada data" class="mh-225px img-fluid mb-10">
-                                <h2 class="text-dark mb-4">Member Tidak Ditemukan</h2>
-                                <p class="text-gray-600 fs-4 mb-0">Belum ada member atau pencarian tidak sesuai.</p>
+                                <h2 class="text-dark mb-4">Peserta Tidak Ditemukan</h2>
+                                <p class="text-gray-600 fs-4 mb-0">Belum ada peserta atau pencarian tidak sesuai.</p>
                             </div>
                             <div class="table-responsive" v-else>
                                 <table id="kt_datatable_horizontal_scroll"
@@ -194,7 +195,8 @@
             user_ranking: Number,
             total_users: Number,
             user_id: Number,
-            can_show_answer: Boolean
+            can_show_answer: Boolean,
+            can_show_rank: Boolean
         },
 
         computed: {

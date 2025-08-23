@@ -74,13 +74,38 @@
                                                 {{ errors . start_time }}
                                             </div>
                                         </div>
-                                        <div class="fv-row">
+                                        <div class="mb-5 fv-row">
                                             <label class="form-label fs-6">Waktu Selesai</label>
                                             <input class="form-control fs-5" v-model="form.end_time" 
                                                 placeholder="Pilih waktu selesai disini..." id="kt_datepicker_3"
                                                 :class="{ 'is-invalid': errors.end_time }" />
                                             <div v-if="errors.end_time" class="text-mydanger mt-2">
                                                 {{ errors . end_time }}
+                                            </div>
+                                        </div>
+                                        <div class="fv-row">
+                                            <label class="required form-label fs-6">Status</label>
+                                            <div class="btn-group w-100" data-kt-buttons="true"
+                                                data-kt-buttons-target="[data-kt-button]">
+                                                <label
+                                                    class="btn btn-active-myprimary text-gray-700 text-hover-white text-active-white btn-outline"
+                                                    data-kt-button="true"
+                                                    :class="{ active: form.status === 'published' }">
+                                                    <input class="btn-check" type="radio" v-model="form.status"
+                                                        value="published" />
+                                                    Terbit
+                                                </label>
+                                                <label
+                                                    class="btn btn-active-myprimary text-gray-700 text-hover-white text-active-white btn-outline"
+                                                    data-kt-button="true"
+                                                    :class="{ active: form.status === 'archived' }">
+                                                    <input class="btn-check" type="radio" v-model="form.status"
+                                                        value="archived" />
+                                                    Arsip
+                                                </label>
+                                            </div>
+                                            <div v-if="errors.status" class="text-mydanger mt-2">
+                                                {{ errors . status }}
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +137,7 @@
                                                         Untuk mengacak pilihan jawaban tryout.
                                                     </p>
                                                 </div>
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault"
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault2"
                                                     v-model="form.is_random_answer" :true-value="true" :false-value="false"/>
                                             </div>
                                         </div>
@@ -124,7 +149,7 @@
                                                         Untuk menampilkan jawaban setelah tryout selesai.
                                                     </p>
                                                 </div>
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault"
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault3"
                                                     v-model="form.is_show_answer" :true-value="true" :false-value="false"/>
                                             </div>
                                         </div>
@@ -136,7 +161,7 @@
                                                         Untuk menampilkan pembahasan setelah tryout selesai.
                                                     </p>
                                                 </div>
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault"
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault4"
                                                     v-model="form.is_show_explanation" :true-value="true" :false-value="false"/>
                                             </div>
                                         </div>
@@ -148,7 +173,7 @@
                                                         Untuk menampilkan peringkat peserta setelah tryout selesai.
                                                     </p>
                                                 </div>
-                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault"
+                                                <input class="form-check-input" type="checkbox" id="flexSwitchDefault5"
                                                     v-model="form.is_show_rank" :true-value="true" :false-value="false"/>
                                             </div>
                                         </div>
@@ -233,6 +258,7 @@
                 is_show_answer: false,
                 is_show_explanation: false,
                 is_show_rank: false,
+                status: '',
             });
 
             const editorInit = {
@@ -309,6 +335,7 @@
                 payload.append('is_show_answer', form.is_show_answer ? '1' : '0'); 
                 payload.append('is_show_explanation', form.is_show_explanation ? '1' : '0'); 
                 payload.append('is_show_rank', form.is_show_rank ? '1' : '0'); 
+                payload.append('status', form.status);
 
                 const cleanup = () => {
                     if (submitBtn) {

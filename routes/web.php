@@ -228,6 +228,7 @@ Route::prefix('admin')->middleware(['auth', 'role:Admin'])->group(function () {
             Route::get('/create', 'tryoutCreate')->name('create');
             Route::post('/', 'tryoutStore')->name('store');
             Route::get('/{tryout:slug}', 'tryoutShow')->name('show');
+            Route::get('/{tryout:slug}/result', 'tryoutResult')->name('result');
             Route::get('/{tryout:slug}/edit', 'tryoutEdit')->name('edit');
             Route::put('/{tryout:slug}', 'tryoutUpdate')->name('update');
             Route::delete('/{tryout:slug}', 'tryoutDestroy')->name('destroy');

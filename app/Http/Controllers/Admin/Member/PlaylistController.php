@@ -18,7 +18,7 @@ class PlaylistController extends Controller
         $playlists = Playlist::where('sub_product_id', $subProduct->id)
             ->with('subProduct')
             ->latest()
-            ->paginate(10);
+            ->paginate(100);
 
         return inertia('Admin/Members/Playlists/Index', [
             'menuProducts' => $menuProducts,

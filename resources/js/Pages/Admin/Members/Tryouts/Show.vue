@@ -39,9 +39,10 @@
                                 class="w-100 w-md-auto btn btn-sm btn-mysecondary fs-5 align-self-end white-space-nowrap">
                                 Edit Tryout
                             </Link>
-                            <Link :href="`/admin/${product.slug}/${subProduct.slug}/tryouts/${tryout.slug}/report`"
+                            <Link v-if="tryout.finished_grades_count > 0"
+                                :href="`/admin/${product.slug}/${subProduct.slug}/tryouts/${tryout.slug}/result`"
                                 class="w-100 w-md-auto btn btn-sm btn-myprimary fs-5 align-self-end white-space-nowrap">
-                                Laporan Nilai
+                                Hasil Tryout
                             </Link>
                         </div>
                     </div>
@@ -80,7 +81,7 @@
                                     </div>
                                     <div class="d-flex flex-column flex-grow-1">
                                         <p class="fs-5 fw-semibold text-gray-600 mb-2 text-truncate-1 white-space-nowrap">Total Peserta</p>
-                                        <h1 class="fs-3qx fs-md-2qx mb-0">0</h1>
+                                        <h1 class="fs-3qx fs-md-2qx mb-0">{{ tryout.finished_grades_count }}</h1>
                                     </div>
                                 </div>
                             </div>

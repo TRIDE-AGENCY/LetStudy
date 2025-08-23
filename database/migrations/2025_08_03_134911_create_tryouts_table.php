@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('is_show_answer')->default(false);
             $table->boolean('is_show_explanation')->default(false);
             $table->boolean('is_show_rank')->default(false);
+            $table->enum('status', ['published', 'archived']);
             $table->timestamps();
         });
     }

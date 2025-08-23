@@ -18,7 +18,7 @@ class PlaylistController extends Controller
             ->with('subProduct')
             ->withCount('playlistVideos')
             ->latest()
-            ->paginate(10);
+            ->paginate(100);
 
         return inertia('User/Members/Playlists/Index', [
             'menuProducts' => $menuProducts,

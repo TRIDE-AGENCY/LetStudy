@@ -11,10 +11,10 @@
                     <div class="page-title d-flex flex-column justify-content-center w-100 flex-wrap">
                         <ol class="breadcrumb text-muted fs-6 fw-semibold mb-3">
                             <li class="breadcrumb-item pe-3">
-                                <Link href="/member-area" class="btn-link-myprimary fw-bold pe-3">...</Link>
+                                <Link :href="`/member-area/${product.slug}/${subProduct.slug}/tryouts`" class="btn-link-myprimary fw-bold pe-3">...</Link>
                             </li>
                             <li class="breadcrumb-item pe-3">
-                                <Link :href="`/member-area/${product.slug}/${subProduct.slug}/tryouts`" class="btn-link-myprimary fw-bold pe-3">Hasil Tryout</Link>
+                                <Link :href="`/member-area/${product.slug}/${subProduct.slug}/tryout-result/${tryout_group.id}`" class="btn-link-myprimary fw-bold pe-3">Hasil Tryout</Link>
                             </li>
                             <li class="breadcrumb-item pe-3 text-muted">Jawaban</li>
                         </ol>
@@ -70,8 +70,8 @@
                                             </div>
                                         </div>
                                         <div v-if="can_show_explanation">
-                                            <p class="fs-4 fw-semibold text-dark mt-6 mb-0">Pembahasan:</p>
-                                            <div class="fs-4 text-gray-800 mt-1" style="white-space: pre-line"
+                                            <!-- <p class="fs-4 fw-semibold text-dark mt-6 mb-0">Pembahasan:</p> -->
+                                            <div class="fs-4 text-gray-800 mt-6"
                                                 v-html="question_active.question.explanation"></div>
                                             <img v-if="question_active.question.explanation_image" class="img-fluid mt-3 rounded mh-300px" :src="`/storage/${question_active.question.explanation_image}`" alt="Gambar Pembahasan">
                                         </div>

@@ -16,7 +16,7 @@
                                 #YOURSTUDYPARTNER
                             </p>
                             <h1 class="text-center text-lg-start text-dark lh-sm fw-bold fs-3hx mb-6">
-                                Tentang Kami 🌟
+                                Tentang Kami
                             </h1>
                             <p class="text-center text-lg-start me-lg-10 text-gray-600 fs-4 mb-0">
                                 <span class="text-gray-800 fw-bold">LetStudy</span> adalah organisasi non-pemerintah di bidang pendidikan yang mengelola keuangan sosial Islam sebagai wujud nilai ekonomi syariah. Kami berkomitmen memberikan akses pendidikan yang lebih baik dan merata di seluruh Indonesia, guna mencetak generasi muda terampil dan berpengetahuan luas sebagai fondasi menuju Indonesia maju.
@@ -90,16 +90,136 @@
                 </div>
             </div>
             <div id="background" class="container d-flex flex-column pt-20 mt-20">
-                <p class="fs-5 text-myprimary fw-bold mb-3"
-                    style="letter-spacing: 0.04em;">
-                    LATAR BELAKANG
-                </p>
-                <h1 class="text-dark lh-sm fw-bold fs-3hx mb-6">
-                    Mengapa LetStudy Hadir ✨
+                <div class="row g-10 align-items-center">
+                    <div class="col-12 col-md-6">
+                        <p class="fs-5 text-myprimary fw-bold mb-3"
+                            style="letter-spacing: 0.04em;">
+                            LATAR BELAKANG
+                        </p>
+                        <h1 class="text-dark lh-sm fw-bold fs-3hx mb-6">
+                            Mengapa LetStudy Hadir
+                        </h1>
+                        <p class="text-gray-600 fs-4 mb-0">
+                            Struktur sosial-ekonomi yang tidak merata di masyarakat membuat keluarga miskin lebih sulit untuk mengakses pendidikan yang berkualitas dan memiliki kesempatan belajar yang lebih rendah daripada rekan-rekan mereka yang berasal dari keluarga berpenghasilan menengah ke atas.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="h-100">
+                            <div class="position-relative h-300px">
+                                <canvas id="bgChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row gap-6 mt-10">
+                    <div class="card p-8 align-items-start rounded-4 border border-gray-300">
+                        <div class="d-flex rounded bg-mysecondary mb-7">
+                            <i class="p-6 fs-2tx text-mysecondary ri-hand-coin-fill"></i>
+                        </div>
+                        <h3 class="text-dark lh-sm fs-2hx fs-md-1 mb-4">
+                            The Cost of Education in Indonesia is Expensive
+                        </h3>
+                        <p class="text-gray-600 fs-5 mb-0">
+                            Dengan besarnya populasi demografi pelajar di Indonesia dan pasokan infrastruktur sekolah atau universitas di Indonesia masih kurang, menyebabkan pendidikan sering kali dikomersilkan karena pasokan di pasar pendidikan tidak dapat menyeimbangkan permintaan. Untuk itu, diperlukan sistem platform EduTech pendukung yang dapat membantu masyarakat dengan keterbatasan finansial untuk dapat bersaing mendapatkan pendidikan yang lebih berkualitas.
+                        </p>
+                    </div>
+                    <div class="card p-8 align-items-start rounded-4 border border-gray-300">
+                        <div class="d-flex rounded bg-mywarning-light mb-7">
+                            <i class="p-6 fs-2tx text-mywarning ri-team-fill"></i>
+                        </div>
+                        <h3 class="text-dark lh-sm fs-2hx fs-md-1 mb-4">
+                            Low Human Capital and Education Inequality
+                        </h3>
+                        <p class="text-gray-600 fs-5 mb-0">
+                            Menghambat potensi pertumbuhan yang dapat dihasilkan oleh melimpahnya jumlah penduduk usia produktif, yang diakui sebagai kunci untuk mewujudkan visi Indonesia Emas 2045. Oleh karena itu, pemerintah Indonesia menetapkan kebijakan pembangunan nasional yang inklusif dan berkelanjutan serta menginstruksikan program pemerataan pendidikan. Namun, pemerintah memiliki sumber daya yang terbatas, sehingga memperlambat pembangunan ekonomi nasional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="vision" class="pt-20 mt-20">
+                <div class="bg-gray-300">
+                    <div class="container d-flex flex-column flex-center py-20">
+                        <img src="/assets/media/elements/quotation_marks-solid.png" class="w-45px mb-10" alt="" />
+                        <h1 class="text-center text-dark lh-sm fw-bold fs-3hx mb-6">
+                            Visi LetStudy
+                        </h1>
+                        <p class="text-center text-gray-600 fs-2 fs-md-1 fw-semibold mb-0">
+                            Menjadi sebuah wadah yang dapat menumbuhkan solidaritas sosial masyarakat untuk turut berkontribusi di bidang pendidikan sehingga dapat memunculkan bibit potensi sumber daya manusia yang unggul serta mampu berdampak positif dalam jangka panjang.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="mission" class="container d-flex mt-20">
+                <div class="bg-white w-100 d-flex flex-column border border-gray-300 rounded-4 p-10 p-md-16">
+                    <h1 class="text-center text-dark lh-sm fw-bold fs-3hx pb-6 pb-lg-8 mb-6 mb-md-8 border-bottom border-gray-300">
+                        Misi LetStudy
+                    </h1>
+                    <div class="row g-6 g-lg-8">
+                        <div class="col-12 col-lg-4">
+                            <div class="d-flex gap-5">
+                                <div class="symbol symbol-45px symbol-circle">
+                                    <div class="symbol-label fs-4 fw-semibold bg-myprimary text-white">01</div>
+                                </div>
+                                <p class="text-gray-600 fs-3 mb-0">
+                                    Mendukung pelayanan edukasi berkelanjutan sesuai dengan SDGs ke-4 dan membantu persiapan para pelajar untuk menghadapi dunia kerja sesuai dengan SDGs ke-8.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="d-flex gap-5">
+                                <div class="symbol symbol-45px symbol-circle">
+                                    <div class="symbol-label fs-4 fw-semibold bg-myprimary text-white">02</div>
+                                </div>
+                                <p class="text-gray-600 fs-3 mb-0">
+                                    Memfasilitasi masyarakat untuk peduli dengan pendidikan di Indonesia melalui program nyata sesuai dengan kapasitasnya.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="d-flex gap-5">
+                                <div class="symbol symbol-45px symbol-circle">
+                                    <div class="symbol-label fs-4 fw-semibold bg-myprimary text-white">03</div>
+                                </div>
+                                <p class="text-gray-600 fs-3 mb-0">
+                                    Menyediakan wadah pengembangan baik akademik maupun non-akademik yang mendukung pengembangan sumber daya manusia berkualitas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="achievements" v-if="achievements.length > 0"
+                class="container d-flex flex-column flex-center pt-20 mt-20">
+                <h1 class="text-center text-dark lh-sm fw-bold fs-3hx mb-4">
+                    Pencapaian LetStudy 🎯
                 </h1>
-                <p class="text-gray-600 fs-4 mb-10">
-                    Struktur sosial-ekonomi yang tidak merata di masyarakat membuat keluarga miskin lebih sulit untuk mengakses pendidikan yang berkualitas dan memiliki kesempatan belajar yang lebih rendah daripada rekan-rekan mereka yang berasal dari keluarga berpenghasilan menengah ke atas.
+                <p class="text-center text-gray-600 fs-2 fw-semibold mb-10">
+                    Sejak <span class="text-myprimary fw-bold">2023</span>, LetStudy telah menjangkau <span class="text-myprimary fw-bold">ratusan ribu pelajar</span> di seluruh <span class="text-myprimary fw-bold">Indonesia</span>.
                 </p>
+                <div class="achievements-wrapper overflow-hidden position-relative w-100">
+                    <div class="achievements-content gap-6 h-100">
+                        <div v-for="(achievement, index) in achievements" :key="index"
+                            class="card w-200px h-100 justify-content-start flex-center p-6 rounded-4 border border-gray-300">
+                            <img class="w-100 mb-4" :src="`/storage/${achievement.icon}`" :alt="`${achievement.title}`">
+                            <h2 class="text-dark text-center fw-bolder lh-sm fs-3x fs-md-2x mb-2">
+                                {{ achievement.value }}
+                            </h2>
+                            <p class="text-center text-gray-600 fs-5 mb-0">
+                                {{ achievement.title }}
+                            </p>
+                        </div>
+                        <div v-for="(achievement, index) in achievements" :key="index"
+                            class="card w-200px h-100 justify-content-start flex-center p-6 rounded-4 border border-gray-300">
+                            <img class="w-100 mb-4" :src="`/storage/${achievement.icon}`" :alt="`${achievement.title}`">
+                            <h2 class="text-dark text-center fw-bolder lh-sm fs-3x fs-md-2x mb-2">
+                                {{ achievement.value }}
+                            </h2>
+                            <p class="text-center text-gray-600 fs-5 mb-0">
+                                {{ achievement.title }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="community" class="container d-flex pt-20 mt-20">
                 <div class="bg-white w-100 d-flex flex-column flex-lg-row flex-center flex-lg-start border border-gray-300 rounded-4 px-10 pt-10 px-md-16 pt-md-16 pb-lg-16 position-relative">
@@ -211,12 +331,13 @@
     import Navbar from "../../../Components/Navbar/Home.vue";
     import Footer from "../../../Components/Footer/Home.vue";
     import { Head, usePage } from '@inertiajs/vue3';
-    import { computed } from 'vue'
+    import { computed, onMounted, onUnmounted, watch } from 'vue'
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import 'swiper/css';
     import 'swiper/css/pagination';
     import 'swiper/css/navigation';
     import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+    import { Chart, registerables } from 'chart.js';
 
     export default {
         components: {
@@ -228,8 +349,19 @@
         },
 
         props: {
+            achievements: Array,
             donate: Object,
             sosmed: Object,
+            backgroundStats: {
+                type: Array,
+                default: () => ([
+                { kuintil: "Kuintil 1", sma: 74.45, ptn: 18.23 },
+                { kuintil: "Kuintil 2", sma: 84.53, ptn: 22.47 },
+                { kuintil: "Kuintil 3", sma: 88.39, ptn: 27.12 },
+                { kuintil: "Kuintil 4", sma: 92.50, ptn: 33.34 },
+                { kuintil: "Kuintil 5", sma: 97.37, ptn: 54.25 },
+                ])
+            }
         },
 
         mounted() {
@@ -271,6 +403,90 @@
         },
 
         setup(props) {
+            Chart.register(...registerables);
+
+            let bgChart; // simpan instance Chart
+
+            const labels = computed(() => props.backgroundStats.map(r => r.kuintil));
+            const dataSMA = computed(() => props.backgroundStats.map(r => r.sma));
+            const dataPTN = computed(() => props.backgroundStats.map(r => r.ptn));
+
+            const renderBgChart = () => {
+            const ctx = document.getElementById('bgChart');
+            if (!ctx) return;
+
+            if (bgChart) {
+                bgChart.destroy();
+                bgChart = null;
+            }
+
+            bgChart = new Chart(ctx, {
+                type: 'bar',               
+                data: {
+                    labels: labels.value,
+                    datasets: [
+                        {
+                            label: 'SMA',
+                            data: dataSMA.value,
+                            backgroundColor: 'rgba(96, 165, 250, 1)',  
+                        },
+                        {
+                            label: 'Perguruan Tinggi',
+                            data: dataPTN.value,
+                            backgroundColor: 'rgba(251, 191, 36, 1)',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,   
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                            const val = ctx.parsed.y;
+                            return `${ctx.dataset.label}: ${new Intl.NumberFormat('id-ID').format(val)}`;
+                            }
+                        }
+                        }
+                    },
+                    scales: {
+                        x: {
+                        grid: { display: false },
+                        ticks: { font: { size: 12 } }
+                        },
+                        y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: (val) => new Intl.NumberFormat('id-ID').format(val),
+                            font: { size: 12 }
+                        }
+                        }
+                    }
+                }});
+            };
+
+            onMounted(() => {
+                if (props.backgroundStats && props.backgroundStats.length) {
+                    renderBgChart();
+                }
+            });
+
+            onUnmounted(() => {
+                if (bgChart) {
+                    bgChart.destroy();
+                    bgChart = null;
+                }
+            });
+
+            watch(() => props.backgroundStats, () => {
+                if (props.backgroundStats && props.backgroundStats.length) {
+                    renderBgChart();
+                }
+            }, { deep: true });
+
             const donateAchievements = computed(() => {
                 const d = props.donate ?? {};
                 return [d.achievement1, d.achievement2, d.achievement3].filter(Boolean);

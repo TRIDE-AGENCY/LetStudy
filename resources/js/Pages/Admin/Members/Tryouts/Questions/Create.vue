@@ -31,22 +31,15 @@
                         <div class="card rounded-4 border border-gray-300">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
                                 <h3 class="required mb-0">Pertanyaan</h3>
-                                <button
-                                    v-if="!showQuestionImage"
-                                    type="button"
-                                    class="btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0"
-                                    @click="showQuestionImage = true"
-                                >
-                                    Tambah Gambar
-                                </button>
-                                <button
-                                    v-else
-                                    type="button"
-                                    class="btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0"
-                                    @click="removeQuestionImage"
-                                >
-                                    Hapus Gambar
-                                </button>
+                                <div class="collapsible toggle collapsed"
+                                    data-bs-toggle="collapse" data-bs-target="#question-collapse">
+                                    <button type="button" class="toggle-off btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0">
+                                        Tambah Gambar
+                                    </button>
+                                    <button type="button" class="toggle-on btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0">
+                                        Hapus Gambar
+                                    </button>
+                                </div>
                             </div>
                             <div class="card-body p-6">
                                 <div class="fv-row">
@@ -59,7 +52,7 @@
                                         {{ errors . question }}
                                     </div>
                                 </div>
-                                <div v-if="showQuestionImage" class="mt-5 fv-row">
+                                <div id="question-collapse" class="mt-5 fv-row collapse">
                                     <div id="question-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
                                         <div class="dz-message needsclick flex-column text-center gap-5 p-5">
                                             <i class="ri-image-add-line text-myprimary fs-3x"></i>
@@ -203,22 +196,15 @@
                         <div class="card rounded-4 border border-gray-300 mt-6">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
                                 <h3 class="mb-0">Pembahasan</h3>
-                                <button
-                                    v-if="!showExplanationImage"
-                                    type="button"
-                                    class="btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0"
-                                    @click="showExplanationImage = true"
-                                >
-                                    Tambah Gambar
-                                </button>
-                                <button
-                                    v-else
-                                    type="button"
-                                    class="btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0"
-                                    @click="removeExplanationImage"
-                                >
-                                    Hapus Gambar
-                                </button>
+                                <div class="collapsible toggle collapsed"
+                                    data-bs-toggle="collapse" data-bs-target="#explanation-collapse">
+                                    <button type="button" class="toggle-off btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0">
+                                        Tambah Gambar
+                                    </button>
+                                    <button type="button" class="toggle-on btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0">
+                                        Hapus Gambar
+                                    </button>
+                                </div>
                             </div>
                             <div class="card-body p-6">
                                 <div class="fv-row">
@@ -231,7 +217,7 @@
                                         {{ errors . explanation }}
                                     </div>
                                 </div>
-                                <div v-if="showExplanationImage" class="mt-5 fv-row">
+                                <div id="explanation-collapse" class="mt-5 fv-row collapse">
                                     <div id="explanation-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
                                         <div class="dz-message needsclick flex-column text-center gap-5 p-5">
                                             <i class="ri-image-add-line text-myprimary fs-3x"></i>
@@ -271,7 +257,7 @@
 <script>
     import LayoutAdmin from '../../../../../Layouts/Admin.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive, onMounted, ref, watch, nextTick } from 'vue';
+    import { reactive, onMounted, onUnmounted } from 'vue';
     import Dropzone from 'dropzone';
     import Swal from 'sweetalert2';
     import Editor from '@tinymce/tinymce-vue';
@@ -323,85 +309,49 @@
                 `
             };
 
-            const questionDropzone = ref(null)
-            const showQuestionImage = ref(false);
-
-            const explanationDropzone = ref(null)
-            const showExplanationImage = ref(false);
-
-            watch(showQuestionImage, async (newVal) => {
-                if (newVal && !questionDropzone.value) {
-                    await nextTick()
-
-                    if (Dropzone.instances.some(dz => dz.element.id === 'question-dropzone')) {
-                        return
-                    }
-
-                    questionDropzone.value = new Dropzone('#question-dropzone', {
-                        url: '/',
-                        paramName: 'question_image',
-                        maxFiles: 1,
-                        maxFilesize: 10,
-                        acceptedFiles: 'image/jpeg,image/png',
-                        autoProcessQueue: false,
-                        addRemoveLinks: true,
-                        dictRemoveFile: 'Hapus',
-                        init: function () {
-                            this.on('addedfile', function (file) {
-                                form.question_image = file
-                            });
-                            this.on('removedfile', function () {
-                                form.question_image = null
-                            });
-                        },
+            const createDropzone = (selector, { paramName, onSet, maxSizeMB = 10 }) => {
+                return new Dropzone(selector, {
+                    url: '/',              
+                    paramName,
+                    maxFiles: 1,
+                    maxFilesize: maxSizeMB,
+                    acceptedFiles: 'image/jpeg,image/png,image/jpg,image/webp',
+                    autoProcessQueue: false,
+                    addRemoveLinks: true,
+                    dictRemoveFile: 'Hapus',
+                    init: function () {
+                    this.on('addedfile', (file) => {
+                        if (this.files.length > 1) {
+                        this.removeFile(this.files[0]);
+                        }
+                        onSet(file);
                     });
-                }
-            });
-
-            const removeQuestionImage = () => {
-                showQuestionImage.value = false;
-                if (questionDropzone.value) {
-                    questionDropzone.value.destroy();
-                    questionDropzone.value = null;
-                }
+                    this.on('removedfile', () => onSet(null));
+                    },
+                });
             };
 
-            watch(showExplanationImage, async (newVal) => {
-                if (newVal && !explanationDropzone.value) {
-                    await nextTick()
+            let dzQuestion = null;
+            let dzExplanation = null;
 
-                    if (Dropzone.instances.some(dz => dz.element.id === 'explanation-dropzone')) {
-                        return
-                    }
+            onMounted(() => {
+                Dropzone.autoDiscover = false;
 
-                    explanationDropzone.value = new Dropzone('#explanation-dropzone', {
-                        url: '/',
-                        paramName: 'explanation_image',
-                        maxFiles: 1,
-                        maxFilesize: 10,
-                        acceptedFiles: 'image/jpeg,image/png',
-                        autoProcessQueue: false,
-                        addRemoveLinks: true,
-                        dictRemoveFile: 'Hapus',
-                        init: function () {
-                            this.on('addedfile', function (file) {
-                                form.explanation_image = file
-                            });
-                            this.on('removedfile', function () {
-                                form.explanation_image = null
-                            });
-                        },
-                    });
-                }
+                dzQuestion = createDropzone('#question-dropzone', {
+                    paramName: 'question_image',
+                    onSet: (file) => { form.question_image = file; },
+                });
+
+                dzExplanation = createDropzone('#explanation-dropzone', {
+                    paramName: 'explanation_image',
+                    onSet: (file) => { form.explanation_image = file; },
+                });
             });
 
-            const removeExplanationImage = () => {
-                showExplanationImage.value = false;
-                if (explanationDropzone.value) {
-                    explanationDropzone.value.destroy();
-                    explanationDropzone.value = null;
-                }
-            };
+            onUnmounted(() => {
+                if (dzQuestion) { dzQuestion.destroy(); dzQuestion = null; }
+                if (dzExplanation) { dzExplanation.destroy(); dzExplanation = null; }
+            });
 
             const submit = () => {
                 const submitBtn = document.querySelector('#submit_button');
@@ -454,10 +404,6 @@
             return {
                 form,
                 editorInit,
-                showQuestionImage,
-                showExplanationImage,
-                removeQuestionImage,
-                removeExplanationImage,
                 submit,
             };
         }

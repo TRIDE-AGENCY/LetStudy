@@ -18,11 +18,12 @@ class Tryout extends Model
         'duration',
         'start_time',
         'end_time',
-        'random_question',
-        'random_answer',
-        'show_answer',
-        'show_explanation',
-        'show_rank',
+        'is_random_question',
+        'is_random_answer',
+        'is_show_answer',
+        'is_show_explanation',
+        'is_show_rank',
+        'status',
     ];
 
     public function subProduct()
@@ -38,5 +39,10 @@ class Tryout extends Model
     public function tryoutGroups()
     {
         return $this->hasMany(TryoutGroup::class);
+    }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
     }
 }

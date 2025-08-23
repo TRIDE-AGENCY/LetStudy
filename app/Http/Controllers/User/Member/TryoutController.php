@@ -21,8 +21,9 @@ class TryoutController extends Controller
         $menuProducts = Product::with('subProducts')->get();
 
         $tryouts = Tryout::where('sub_product_id', $subProduct->id)
-            ->with('subProduct')
-            ->with('questions')
+            ->whereHas('questions')
+            ->with(['subProduct', 'questions'])
+            ->where('status', 'published')
             ->latest()
             ->get();
 
@@ -378,7 +379,8 @@ class TryoutController extends Controller
             ->where('grade', '>', $grade->grade)
             ->count() + 1;
 
-        $can_show_answer = $tryout_group->tryout->show_answer === 'Y';
+        $can_show_answer = $tryout_group->tryout->is_show_answer === 1;
+        $can_show_rank = $tryout_group->tryout->is_show_rank === 1;
 
         return inertia('User/Members/Tryouts/Result', [
             'tryout_group'    => $tryout_group,
@@ -388,6 +390,7 @@ class TryoutController extends Controller
             'total_users'     => $totalUsers,
             'user_id'         => $userId,
             'can_show_answer' => $can_show_answer,
+            'can_show_rank'   => $can_show_rank,
             'menuProducts'    => $menuProducts,
             'product'         => $product,
             'subProduct'      => $subProduct,
@@ -411,8 +414,8 @@ class TryoutController extends Controller
             ->orderBy('question_order', 'ASC')
             ->get();
 
-        $cant_show_answer = $tryout_group->tryout->show_answer === 'N';
-        $can_show_explanation = $tryout_group->tryout->show_explanation === 'Y';
+        $cant_show_answer = $tryout_group->tryout->is_show_answer === 0;
+        $can_show_explanation = $tryout_group->tryout->is_show_explanation === 1;
 
         if ($cant_show_answer) {
             return redirect()->route('member.tryouts.result', [

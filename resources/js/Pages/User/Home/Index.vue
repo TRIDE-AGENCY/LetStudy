@@ -104,7 +104,7 @@
             <div id="achievements" v-if="achievements.length > 0"
                 class="container d-flex flex-column flex-center pt-20 mt-20">
                 <h1 class="text-center text-dark lh-sm fw-bold fs-3hx mb-4">
-                    Pencapaian Project LetStudy 🎯
+                    Pencapaian LetStudy 🎯
                 </h1>
                 <p class="text-center text-gray-600 fs-2 fw-semibold mb-10">
                     Sejak <span class="text-myprimary fw-bold">2023</span>, LetStudy telah menjangkau <span class="text-myprimary fw-bold">ratusan ribu pelajar</span> di seluruh <span class="text-myprimary fw-bold">Indonesia</span>.

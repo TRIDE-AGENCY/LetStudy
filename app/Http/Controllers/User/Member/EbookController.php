@@ -17,7 +17,7 @@ class EbookController extends Controller
             ->with('subProduct')
             ->withCount('tutors')
             ->latest()
-            ->paginate(10);
+            ->paginate(100);
 
         return inertia('User/Members/Ebooks/Index', [
             'menuProducts' => $menuProducts,
@@ -34,7 +34,7 @@ class EbookController extends Controller
         $ebook = Ebook::where('id', $ebook->id)
             ->where('sub_product_id', $subProduct->id)
             ->withCount('tutors')
-            ->with('tutors') 
+            ->with('tutors')
             ->firstOrFail();
 
         return inertia('User/Members/Ebooks/Show', [

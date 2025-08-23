@@ -58,7 +58,13 @@
                             <div class="card card-hover rounded-4 border border-gray-300 h-100">
                                 <div class="card-body d-flex flex-column justify-content-between h-100 p-7 gap-7">
                                     <div class="d-flex flex-column">
-                                        <p class="text-dark fs-1 fs-lg-2 fw-bold pb-5 mb-6 text-truncate-3 border-bottom border-gray-300">{{ tryout.title }}</p>
+                                        <div class="d-flex align-items-center pb-5 mb-6 border-bottom border-gray-300">
+                                            <p class="text-dark mb-0 fs-1 fs-lg-2 fw-bold text-truncate-3">{{ tryout.title }}</p>
+                                            <span v-if="tryout.status === 'archived'" 
+                                                class="ms-3 text-capitalize fw-bold fs-7 px-3 py-1 rounded btn-mydanger pe-none">
+                                                Arsip
+                                            </span>
+                                        </div>
                                         <div class="d-flex flex-grow-1 justify-content-between align-items-start gap-5 mb-3">
                                             <div class="d-flex align-items-center gap-3">
                                                 <i class="fs-3 text-gray-600 ri-timer-line"></i>
@@ -71,7 +77,7 @@
                                                 <i class="fs-3 text-gray-600 ri-list-check-2"></i>
                                                 <p class="fs-5 text-gray-600 m-0">Jumlah Soal</p>
                                             </div>
-                                            <p class="fs-5 text-dark text-end fw-bold m-0">0 Soal</p>
+                                            <p class="fs-5 text-dark text-end fw-bold m-0">{{ tryout.questions.length }} Soal</p>
                                         </div>
                                         <div class="d-flex flex-grow-1 justify-content-between align-items-start gap-5 mb-3">
                                             <div class="d-flex align-items-center gap-3">

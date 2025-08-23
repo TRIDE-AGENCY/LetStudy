@@ -201,6 +201,9 @@ Route::prefix('admin')->middleware(['auth', 'role:Admin'])->group(function () {
     Route::put('/messages/{message}', [App\Http\Controllers\Admin\MessageController::class, 'messageUpdate'])->name('admin.messages.update');
     Route::delete('/messages/{message}', [App\Http\Controllers\Admin\MessageController::class, 'messageDestroy'])->name('admin.messages.destroy');
 
+    Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'profile'])->name('admin.profile');
+    Route::put('/profile/{profile}', [App\Http\Controllers\Admin\ProfileController::class, 'profileUpdate'])->name('admin.profile.update');
+
     Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'userDetail'])->name('admin.user');
     Route::put('/user/{user}', [App\Http\Controllers\Admin\UserController::class, 'userDetailUpdate'])->name('admin.user.update');
 

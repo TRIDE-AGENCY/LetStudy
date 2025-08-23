@@ -67,7 +67,6 @@
                                             {{ errors . quote }}
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>

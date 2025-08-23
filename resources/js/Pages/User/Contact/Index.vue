@@ -24,29 +24,31 @@
                     <div class="row g-6">
                         <div class="col-12 col-md-4">
                             <div class="d-flex flex-column gap-4">
-                                <div class="card rounded-4 border border-gray-300">
+                                <a :href="`https://wa.me/${profile.phone}`" target="_blank"
+                                    class="card card-hover rounded-4 border border-gray-300">
                                     <div class="card-body d-flex flex-grow align-items-center gap-4 p-6">
                                         <div class="p-2 rounded d-flex align-items-center justify-content-center">
                                             <i class="ri-phone-fill text-myprimary fs-3qx"></i>
                                         </div>
                                         <div class="d-flex flex-column flex-grow-1">
                                             <h3 class="mb-2">Telepon</h3>
-                                            <p class="fs-3 fw-semibold text-gray-600 mb-0 text-truncate-1 white-space-nowrap">+62 812-3456-7890</p>
+                                            <p class="fs-3 fw-semibold text-gray-600 mb-0 text-truncate-1 white-space-nowrap">{{ formatWhatsapp(profile.phone) }}</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card rounded-4 border border-gray-300">
+                                </a>
+                                <a :href="`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email},`"
+                                    target="_blank" class="card card-hover rounded-4 border border-gray-300">
                                     <div class="card-body d-flex flex-grow align-items-center gap-4 p-6">
                                         <div class="p-2 rounded d-flex align-items-center justify-content-center">
                                             <i class="ri-mail-send-fill text-myprimary fs-3qx"></i>
                                         </div>
                                         <div class="d-flex flex-column flex-grow-1">
                                             <h3 class="mb-2">Email</h3>
-                                            <p class="fs-3 fw-semibold text-gray-600 mb-0 text-truncate-1 white-space-nowrap">mail@letstudy.co.id</p>
+                                            <p class="fs-3 fw-semibold text-gray-600 mb-0 text-truncate-1 white-space-nowrap">{{ profile.email }}</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card rounded-4 border border-gray-300">
+                                </a>
+                                <a :href="`${profile.community}`" target="_blank" class="card card-hover rounded-4 border border-gray-300">
                                     <div class="card-body d-flex flex-grow align-items-center gap-4 p-6">
                                         <div class="p-2 rounded d-flex align-items-center justify-content-center">
                                             <i class="ri-whatsapp-line text-myprimary fs-3qx"></i>
@@ -56,7 +58,7 @@
                                             <p class="fs-3 fw-semibold text-gray-600 mb-0 text-truncate-1 white-space-nowrap">WhatsApp Group</p>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-12 col-md-8">
@@ -142,6 +144,7 @@
 
         props: {
             errors: Object,
+            profile: Object,
             sosmed: Object,
         },
 
@@ -153,6 +156,13 @@
                 email: page.props.auth?.user?.email ?? '', 
                 message: '',
             });
+
+            const formatWhatsapp = (number) => {
+                if (!number || !number.startsWith('62') || number.length < 10) return number;
+                const prefix = '+62';
+                const main = number.slice(2);
+                return `${prefix} ${main.slice(0, 3)} ${main.slice(3, 7)} ${main.slice(7)}`;
+            };
 
             const submit = () => {
                 const submitBtn = document.querySelector('#submit_button');
@@ -193,6 +203,7 @@
             }
 
             return {
+                formatWhatsapp,
                 form,
                 submit,
             };

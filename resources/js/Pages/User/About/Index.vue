@@ -19,7 +19,7 @@
                                 Tentang Kami
                             </h1>
                             <p class="text-center text-lg-start me-lg-10 text-gray-600 fs-4 mb-0">
-                                <span class="text-gray-800 fw-bold">LetStudy</span> adalah organisasi non-pemerintah di bidang pendidikan yang mengelola keuangan sosial Islam sebagai wujud nilai ekonomi syariah. Kami berkomitmen memberikan akses pendidikan yang lebih baik dan merata di seluruh Indonesia, guna mencetak generasi muda terampil dan berpengetahuan luas sebagai fondasi menuju Indonesia maju.
+                                {{ profile.about }}
                             </p>
                         </div>
                         <div class="col-12 col-lg-6 mw-500px mw-lg-100 align-self-center">
@@ -231,7 +231,7 @@
                             Ruang untuk saling dukung, saling berbagi, saling belajar, dan saling tumbuh bersama setiap waktu.
                         </p>
                         <div class="d-flex gap-4 justify-content-center justify-content-lg-start">
-                            <a class="btn btn-sm btn-myprimary fs-5">
+                            <a :href="`${profile.community}`" target="_blank" class="btn btn-sm btn-myprimary fs-5">
                                 Gabung Komunitas
                             </a>
                             <a href="/contact-us" class="btn btn-sm btn-mysecondary fs-5">
@@ -349,6 +349,7 @@
         },
 
         props: {
+            profile: Object,
             achievements: Array,
             donate: Object,
             sosmed: Object,

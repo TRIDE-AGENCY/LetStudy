@@ -15,6 +15,7 @@ use App\Models\Message;
 use App\Models\Partner;
 use App\Models\Playlist;
 use App\Models\Product;
+use App\Models\Profile;
 use App\Models\Quote;
 use App\Models\Report;
 use App\Models\Sosmed;
@@ -64,6 +65,8 @@ class HomeController extends Controller
 
         $donate = Donate::with(['achievement1', 'achievement2', 'achievement3'])->first();
 
+        $community = Profile::find(1)->community;
+
         $sosmed = Sosmed::find(1);
 
         return inertia('User/Home/Index', [
@@ -82,6 +85,7 @@ class HomeController extends Controller
             'faqs2' => $faqs2,
             'donate' => $donate,
             'sosmed' => $sosmed,
+            'community' => $community,
         ]);
     }
 
@@ -129,6 +133,8 @@ class HomeController extends Controller
             ->inRandomOrder()
             ->get();
 
+        $community = Profile::find(1)->community;
+
         $quote = Quote::where('product_id', $product->id)->first();
 
         $blogs = Blog::where('status', 'published')
@@ -159,6 +165,7 @@ class HomeController extends Controller
             'blogs' => $blogs,
             'donate' => $donate,
             'sosmed' => $sosmed,
+            'community' => $community,
         ]);
     }
 
@@ -211,11 +218,13 @@ class HomeController extends Controller
 
     public function about()
     {
+        $profile = Profile::find(1);
         $achievements = Achievement::all();
         $donate = Donate::with(['achievement1', 'achievement2', 'achievement3'])->first();
         $sosmed = Sosmed::find(1);
 
         return inertia('User/About/Index', [
+            'profile' => $profile,
             'achievements' => $achievements,
             'donate' => $donate,
             'sosmed' => $sosmed,
@@ -245,9 +254,11 @@ class HomeController extends Controller
 
     public function contact()
     {
+        $profile = Profile::find(1);
         $sosmed = Sosmed::find(1);
 
         return inertia('User/Contact/Index', [
+            'profile' => $profile,
             'sosmed' => $sosmed,
         ]);
     }

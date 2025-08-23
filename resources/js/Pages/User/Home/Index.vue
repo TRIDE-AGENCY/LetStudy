@@ -487,7 +487,7 @@
                             Ruang untuk saling dukung, saling berbagi, saling belajar, dan saling tumbuh bersama setiap waktu.
                         </p>
                         <div class="d-flex gap-4 justify-content-center justify-content-lg-start">
-                            <a class="btn btn-sm btn-myprimary fs-5">
+                            <a :href="`${community}`" target="_blank" class="btn btn-sm btn-myprimary fs-5">
                                 Gabung Komunitas
                             </a>
                             <a href="/contact-us" class="btn btn-sm btn-mysecondary fs-5">
@@ -619,6 +619,7 @@
             faqs2: Array,
             donate: Object,
             sosmed: Object,
+            community: String,
         },
 
         mounted() {

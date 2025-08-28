@@ -65,7 +65,7 @@ class HomeController extends Controller
 
         $donate = Donate::with(['achievement1', 'achievement2', 'achievement3'])->first();
 
-        $community = Profile::find(1)->community;
+        $community = Profile::select('whatsapp_community', 'telegram_community')->find(1);
 
         $sosmed = Sosmed::find(1);
 
@@ -133,7 +133,7 @@ class HomeController extends Controller
             ->inRandomOrder()
             ->get();
 
-        $community = Profile::find(1)->community;
+        $community = Profile::select('whatsapp_community', 'telegram_community')->find(1);
 
         $quote = Quote::where('product_id', $product->id)->first();
 
@@ -218,12 +218,14 @@ class HomeController extends Controller
 
     public function about()
     {
+        $products = Product::all();
         $profile = Profile::find(1);
         $achievements = Achievement::all();
         $donate = Donate::with(['achievement1', 'achievement2', 'achievement3'])->first();
         $sosmed = Sosmed::find(1);
 
         return inertia('User/About/Index', [
+            'products' => $products,
             'profile' => $profile,
             'achievements' => $achievements,
             'donate' => $donate,

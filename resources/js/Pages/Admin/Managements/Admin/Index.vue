@@ -157,21 +157,51 @@
                                         </div>
                                     </div>
                                     <div class="mb-5 fv-row">
-                                        <label class="form-label fs-6">Tempat, Tanggal Lahir</label>
+                                        <label class="form-label fs-6">Tempat Lahir</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control fs-5" v-model="form.birth_place"
-                                                placeholder="Kota Asal" />
-                                            <input class="form-control fs-5" v-model="form.birth_date"
-                                                placeholder="Pilih Tanggal Lahir" id="kt_datepicker_1"/>
+                                            <select class="form-select fs-5" v-model="form.province_id"
+                                                :class="[
+                                                    { 'is-invalid': errors.province_id },
+                                                    !form.province_id ? 'text-gray-400' : 'text-dark'
+                                                ]">
+                                                <option disabled value="">Provinsi</option>
+                                                <option class="text-dark" v-for="province in provinces"
+                                                    :key="province.id" :value="province.id">
+                                                    {{ province.name }}
+                                                </option>
+                                            </select>
+                                            <select class="form-select fs-5" v-model="form.city_id"
+                                                :class="[
+                                                    { 'is-invalid': errors.city_id },
+                                                    !form.city_id ? 'text-gray-400' : 'text-dark'
+                                                ]">
+                                                <option disabled value="">Kab / Kota</option>
+                                                <option class="text-dark" v-for="city in filteredCities"
+                                                    :key="city.id" :value="city.id">
+                                                    {{ city.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5 fv-row">
+                                        <label class="form-label fs-6">Tanggal Lahir</label>
+                                        <input class="form-control fs-5" v-model="form.birth_date"
+                                                placeholder="Pilih tanggal lahir" id="kt_datepicker_1"/>
+                                        <div v-if="errors.birth_date" class="text-mydanger mt-2">
+                                            {{ errors . birth_date }}
                                         </div>
                                     </div>
                                     <div class="fv-row">
                                         <label class="required form-label fs-6">Asal Sekolah / Kampus</label>
                                         <select class="form-select fs-5" required v-model="form.education"
-                                            :class="{ 'is-invalid': errors.education }">
-                                            <option v-for="(education, index) in educations" :key="index"
+                                            :class="[
+                                                { 'is-invalid': errors.city_id },
+                                                !form.education ? 'text-gray-400' : 'text-dark'
+                                            ]">
+                                            <option disabled value="">Pilih asal sekolah / kampus</option>
+                                            <option class="text-dark" v-for="(education, index) in educations" :key="index"
                                                 :value="education.name">{{ education . name }}</option>
-                                            <option value="Lainnya">Lainnya</option>
+                                            <option class="text-dark" value="Lainnya">Lainnya</option>
                                         </select>
                                         <div v-if="form.education === 'Lainnya'" class="mt-3">
                                             <input type="text" class="form-control fs-5" v-model="form.education_other"
@@ -242,7 +272,7 @@
     import LayoutAdmin from '../../../../Layouts/Admin.vue';
     import Pagination from '../../../../Components/Pagination.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive, ref, nextTick, onMounted, watch } from 'vue';
+    import { reactive, computed, ref, nextTick, onMounted, watch } from 'vue';
     import Swal from 'sweetalert2';
     import flatpickr from "flatpickr"
 
@@ -258,6 +288,8 @@
         props: {
             errors: Object,
             admins: Object,
+            provinces: Array,
+            cities: Array,
             educations: Array,
         },
 
@@ -289,7 +321,8 @@
             const form = reactive({
                 name: '',
                 gender: '',
-                birth_place: '',
+                province_id: '',
+                city_id: '',
                 birth_date: '',
                 education: '',
                 education_other: '',
@@ -298,13 +331,25 @@
                 password_confirmation: ''
             });
 
+            const filteredCities = computed(() => {
+                if (!form.province_id) return [];
+                return props.cities.filter(
+                    (c) => c.province_id === parseInt(form.province_id)
+                );
+            });
+
+            watch(() => form.province_id, () => {
+                form.city_id = '';
+            });
+
             const editing = ref(null);
             const isEditMode = ref(false);
 
             const resetForm = () => {
                 form.name = '';
                 form.gender = '';
-                form.birth_place = '';
+                form.province_id = '';
+                form.city_id = '';
                 form.birth_date = '';
                 form.education = '';
                 form.education_other = '';
@@ -329,7 +374,8 @@
                 const payload = {
                     name: form.name,
                     gender: form.gender,
-                    birth_place: form.birth_place,
+                    province_id: form.province_id,
+                    city_id: form.city_id,
                     birth_date: form.birth_date,
                     education: form.education === 'Lainnya' ? form.education_other : form.education,
                     email: form.email,
@@ -389,13 +435,13 @@
                 }
             };
 
-            const editAdmin = (admin) => {
+            const editAdmin = async (admin) => {
                 isEditMode.value = true;
                 editing.value = admin;
 
                 form.name = admin.name;
                 form.gender = admin.gender;
-                form.birth_place = admin.birth_place;
+                form.province_id = admin.province_id ?? '';
                 form.birth_date = admin.birth_date;
                 form.education = admin.education;
                 form.email = admin.email;
@@ -411,6 +457,9 @@
                     form.education = 'Lainnya';
                     form.education_other = admin.education || '';
                 }
+
+                await nextTick();
+                form.city_id = admin.city_id ?? '';
 
                 openDrawer();
             };
@@ -466,6 +515,7 @@
                 search,
                 handleSearch,
                 form,
+                filteredCities,
                 submit,
                 destroy,
                 resetForm,

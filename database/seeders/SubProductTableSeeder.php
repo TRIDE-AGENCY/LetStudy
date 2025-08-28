@@ -13,9 +13,9 @@ class SubProductTableSeeder extends Seeder
         $subProducts = [
             [
                 'product_id' => 1,
-                'icon' => asset('assets/media/logos/icon-snbt-utbk.png'),
-                'title' => 'SNBT / UTBK',
-                'slug' => Str::slug('SNBT / UTBK'),
+                'icon' => asset('assets/media/logos/icon-utbk-snbt.png'),
+                'title' => 'UTBK SNBT',
+                'slug' => Str::slug('UTBK SNBT'),
                 'description' => 'Lorem ipsum dolor sit amet consectetur',
             ],
             [
@@ -23,6 +23,13 @@ class SubProductTableSeeder extends Seeder
                 'icon' => asset('assets/media/logos/icon-mandiri.png'),
                 'title' => 'Mandiri',
                 'slug' => Str::slug('Mandiri'),
+                'description' => 'Lorem ipsum dolor sit amet consectetur',
+            ],
+            [
+                'product_id' => 2,
+                'icon' => asset('assets/media/logos/icon-grammar.png'),
+                'title' => 'Grammar',
+                'slug' => Str::slug('Grammar'),
                 'description' => 'Lorem ipsum dolor sit amet consectetur',
             ],
             [
@@ -41,23 +48,9 @@ class SubProductTableSeeder extends Seeder
             ],
             [
                 'product_id' => 2,
-                'icon' => asset('assets/media/logos/icon-grammar.png'),
-                'title' => 'Grammar',
-                'slug' => Str::slug('Grammar'),
-                'description' => 'Lorem ipsum dolor sit amet consectetur',
-            ],
-            [
-                'product_id' => 2,
                 'icon' => asset('assets/media/logos/icon-study-abroad.png'),
                 'title' => 'Study Abroad',
                 'slug' => Str::slug('Study Abroad'),
-                'description' => 'Lorem ipsum dolor sit amet consectetur',
-            ],
-            [
-                'product_id' => 3,
-                'icon' => asset('assets/media/logos/icon-management-trainee.png'),
-                'title' => 'Management Trainee',
-                'slug' => Str::slug('Management Trainee'),
                 'description' => 'Lorem ipsum dolor sit amet consectetur',
             ],
             [
@@ -69,9 +62,16 @@ class SubProductTableSeeder extends Seeder
             ],
             [
                 'product_id' => 3,
-                'icon' => asset('assets/media/logos/icon-english-for-career.png'),
-                'title' => 'English for Career',
-                'slug' => Str::slug('English for Career'),
+                'icon' => asset('assets/media/logos/icon-mt-preparation.png'),
+                'title' => 'MT Preparation',
+                'slug' => Str::slug('MT Preparation'),
+                'description' => 'Lorem ipsum dolor sit amet consectetur',
+            ],
+            [
+                'product_id' => 3,
+                'icon' => asset('assets/media/logos/icon-english-for-working.png'),
+                'title' => 'English for Working',
+                'slug' => Str::slug('English for Working'),
                 'description' => 'Lorem ipsum dolor sit amet consectetur',
             ],
         ];

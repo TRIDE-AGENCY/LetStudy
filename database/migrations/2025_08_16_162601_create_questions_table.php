@@ -15,20 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tryout_id')->references('id')->on('tryouts')->cascadeOnDelete();
             $table->longText('question');
-            $table->string('question_image')->nullable();
-            $table->text('option_1');
-            $table->string('option_1_image')->nullable();
-            $table->text('option_2');
-            $table->string('option_2_image')->nullable();
-            $table->text('option_3');
-            $table->string('option_3_image')->nullable();
-            $table->text('option_4');
-            $table->string('option_4_image')->nullable();
-            $table->text('option_5');
-            $table->string('option_5_image')->nullable();
+            $table->longText('option_1');
+            $table->longText('option_2');
+            $table->longText('option_3');
+            $table->longText('option_4');
+            $table->longText('option_5');
             $table->integer('answer');
             $table->longText('explanation')->nullable();
-            $table->string('explanation_image')->nullable();   
             $table->timestamps();
         });
     }

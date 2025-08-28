@@ -29,15 +29,18 @@ class EducationController extends Controller
     {
         $request->validate([
             'type' => 'required',
-            'name' => 'required',
+            'names' => 'required|array',
+            'names.*' => 'string|max:255'
         ], [
             'type.required'  => 'Tipe tidak boleh kosong.',
         ]);
 
-        Education::create([
-            'type' => $request->type,
-            'name' => $request->name,
-        ]);
+        foreach ($request->names as $name) {
+            Education::create([
+                'type' => $request->type,
+                'name' => $name,
+            ]);
+        }
 
         return redirect()->route('admin.masters.educations.index');
     }

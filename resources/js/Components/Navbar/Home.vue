@@ -77,7 +77,7 @@
                                     <div class="menu-item">
                                         <a :class="{ 'active': $page.url === '/our-team' }"
                                             class="menu-link nav-link navbar-link align-items-center gap-3" href="/our-team">
-                                            <span class="menu-title">TIm LetStudy</span>
+                                            <span class="menu-title">Tim LetStudy</span>
                                         </a>
                                     </div>
                                     <div class="menu-item">

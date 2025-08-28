@@ -74,7 +74,7 @@
                                             <td>{{ faq . category }}</td>
                                             <td>
                                                 <span
-                                                    class="badge text-capitalize fs-7 px-3 py-2"
+                                                    class="text-capitalize fw-bold fs-7 px-3 py-1 rounded"
                                                     :class="{
                                                         'btn-mysecondary pe-none': faq.status === 'published',
                                                         'btn-mydanger pe-none': faq.status === 'archived'

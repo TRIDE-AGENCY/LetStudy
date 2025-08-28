@@ -37,6 +37,14 @@
     color: var(--bs-gray-600);
 }
 
+#content-editor p img,
+#question-editor p img {
+    max-width: 100%;
+    max-height: 1024px;
+    border-radius: 6px;
+    height: auto;
+}
+
 #question-editor p,
 #question-editor li {
     color: var(--bs-dark);

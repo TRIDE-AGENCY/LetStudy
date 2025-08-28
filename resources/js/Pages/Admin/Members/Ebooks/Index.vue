@@ -58,7 +58,7 @@
                             <div class="card card-hover rounded-4 border border-gray-300 h-100">
                                 <Link :href="`/admin/${product.slug}/${subProduct.slug}/ebooks/${ebook.slug}`" type="button">
                                     <div class="card-body d-flex p-7">
-                                        <img class="h-150px h-sm-200px object-fit-cover"
+                                        <img class="h-150px h-sm-200px rounded object-fit-cover"
                                             :src="`/storage/${ebook.image}`"
                                             :alt="`Sampul ${ebook.title}`">
                                         <div class="d-flex flex-column flex-grow-1 ms-6 justify-content-between">
@@ -66,7 +66,7 @@
                                             <div>
                                                 <div class="d-flex align-items-center gap-3 mb-3">
                                                     <i class="fs-3 text-gray-600 ri-user-voice-line"></i>
-                                                    <p class="fs-5 text-gray-600 m-0">{{ ebook.total_tutors ?? 0 }} Tutor</p>
+                                                    <p class="fs-5 text-gray-600 m-0">{{ ebook.tutors_count ?? 0 }} Tutor</p>
                                                 </div>
                                                 <div class="d-flex align-items-center gap-3 mb-3">
                                                     <i class="fs-3 text-gray-600 ri-book-open-line"></i>

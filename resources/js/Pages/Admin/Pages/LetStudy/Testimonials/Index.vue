@@ -173,8 +173,13 @@
                                 <div class="card-body p-6">
                                     <div class="mb-5 fv-row">
                                         <label class="required form-label fs-6">Produk</label>
-                                        <select class="form-select form-control" required v-model="form.product_id" :class="{ 'is-invalid': errors.product_id }">
-                                            <option v-for="(product, index) in products" :key="index"
+                                        <select class="form-select form-control" required v-model="form.product_id"
+                                            :class="[
+                                                { 'is-invalid': errors.product_id },
+                                                !form.product_id ? 'text-gray-400' : 'text-dark'
+                                            ]">
+                                            <option disabled value="">Pilih produk</option>
+                                            <option class="text-dark" v-for="(product, index) in products" :key="index"
                                                 :value="product.id">{{ product . title }}</option>
                                         </select>
                                         <div v-if="errors.product_id" class="text-mydanger mt-2">

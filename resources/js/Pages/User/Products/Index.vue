@@ -156,6 +156,7 @@
                                     delay: 3000,
                                     disableOnInteraction: false,
                                 }"
+                                :centered-slides="tryouts.length === 1"
                                 :breakpoints="{
                                     0: { slidesPerView: 1 },      
                                     768: { slidesPerView: 2 },    
@@ -460,9 +461,10 @@
                             Ruang untuk saling dukung, saling berbagi, saling belajar, dan saling tumbuh bersama setiap waktu.
                         </p>
                         <div class="d-flex gap-4 justify-content-center justify-content-lg-start">
-                            <a :href="`${community}`" target="_blank" class="btn btn-sm btn-myprimary fs-5">
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_community"
+                                class="btn btn-sm btn-myprimary fs-5">
                                 Gabung Komunitas
-                            </a>
+                            </button>
                             <a href="/contact-us" class="btn btn-sm btn-mysecondary fs-5">
                                 Hubungi Kami
                             </a>
@@ -470,6 +472,34 @@
                     </div>
                     <img class="img-community position-lg-absolute mt-10 mt-lg-0"
                         src="/assets/media/images/letstudy-together.png" alt="Let's Study Together">
+                </div>
+            </div>
+            <div class="modal fade" id="kt_modal_community" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered justify-content-center">
+                    <div class="modal-content rounded-4 mw-400px mw-md-500px">
+                        <div class="modal-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px">
+                            <h2 class="modal-title">
+                                Gabung Komunitas
+                            </h2>
+                            <div class="btn btn-sm btn-icon btn-mylighten rounded-pill" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg fs-3"></i>
+                            </div>
+                        </div>
+                        <div class="modal-body p-6 d-flex gap-4">
+                            <a :href="`${community.whatsapp_community}`" target="_blank" class="card card-hover w-100 d-flex flex-column flex-center p-6 border border-gray-300 rounded">
+                                <i class="ri-whatsapp-line fs-3tx text-myprimary mb-4"></i>
+                                <p class="text-center text-dark fs-3 fw-semibold mb-0">
+                                    WhatsApp Group
+                                </p>
+                            </a>
+                            <a :href="`${community.telegram_community}`" target="_blank" class="card card-hover w-100 d-flex flex-column flex-center p-6 border border-gray-300 rounded">
+                                <i class="ri-telegram-2-fill fs-3tx text-myprimary mb-4"></i>
+                                <p class="text-center text-dark fs-3 fw-semibold mb-0">
+                                    Telegram Group
+                                </p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="donation" class="container d-flex flex-column flex-center pt-20 mt-20">
@@ -518,7 +548,8 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <img src="/assets/media/illustrations/qr-code.png" class="h-100 p-3 rounded card" />
+                                    <img :src="donate.qrcode_image ? `/storage/${donate.qrcode_image}` : '/assets/media/illustrations/qr-code.png'" 
+                                        class="h-100 p-3 rounded card" />
                                 </div>
                             </swiper-slide>
                             <swiper-slide>
@@ -589,7 +620,7 @@
             blogs: Array,
             donate: Object,
             sosmed: Object,
-            community: String,
+            community: Object,
         },
 
         mounted() {

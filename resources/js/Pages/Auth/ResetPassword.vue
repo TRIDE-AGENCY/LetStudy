@@ -45,7 +45,7 @@
                                 </div>
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-myprimary w-100">
                                     <span class="indicator-label">
-                                        Kirim Link
+                                        Reset Kata Sandi
                                     </span>
                                     <span class="indicator-progress">
                                         Mohon Tunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>

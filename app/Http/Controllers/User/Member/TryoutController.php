@@ -109,7 +109,7 @@ class TryoutController extends Controller
         $grade->start_time = Carbon::now();
         $grade->update();
 
-        if ($tryout_group->tryout->random_question == 'Y') {
+        if ($tryout_group->tryout->is_random_question === 1) {
             $questions = Question::where('tryout_id', $tryout_group->tryout->id)->inRandomOrder()->get();
         } else {
             $questions = Question::where('tryout_id', $tryout_group->tryout->id)->get();
@@ -123,7 +123,7 @@ class TryoutController extends Controller
             if (!empty($question->option_4)) $options[] = 4;
             if (!empty($question->option_5)) $options[] = 5;
 
-            if ($tryout_group->tryout->random_answer == 'Y') {
+            if ($tryout_group->tryout->is_random_answer === 1) {
                 shuffle($options);
             }
 

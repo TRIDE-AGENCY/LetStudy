@@ -230,7 +230,6 @@ class TryoutController extends Controller
     {
         $request->validate([
             'question'          => 'required',
-            'question_image'    => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
             'option_1'          => 'required',
             'option_2'          => 'required',
             'option_3'          => 'required',
@@ -238,28 +237,13 @@ class TryoutController extends Controller
             'option_5'          => 'required',
             'answer'            => 'required',
             'explanation'       => 'nullable',
-            'explanation_image' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
         ], [
             'answer.required'         => 'Silahkan pilih jawaban benar.',
-            'question_image.image'    => 'Gambar pertanyaan harus berupa file gambar.',
-            'question_image.mimes'    => 'Gambar pertanyaan harus berekstensi jpg, jpeg, atau png.',
-            'question_image.max'      => 'Ukuran gambar pertanyaan maksimal 10MB.',
-            'explanation_image.image' => 'Gambar pembahasan harus berupa file gambar.',
-            'explanation_image.mimes' => 'Gambar pembahasan harus berekstensi jpg, jpeg, atau png.',
-            'explanation_image.max'   => 'Ukuran gambar pembahasan maksimal 10MB.',
         ]);
-
-        $path_question_image = $request->hasFile('question_image')
-            ? $request->file('question_image')->store('questions', 'public')
-            : null;
-        $path_explanation_image = $request->hasFile('explanation_image')
-            ? $request->file('explanation_image')->store('questions', 'public')
-            : null;
 
         Question::create([
             'tryout_id'         => $tryout->id,
             'question'          => $request->question,
-            'question_image'    => $path_question_image,
             'option_1'          => $request->option_1,
             'option_2'          => $request->option_2,
             'option_3'          => $request->option_3,
@@ -267,7 +251,6 @@ class TryoutController extends Controller
             'option_5'          => $request->option_5,
             'answer'            => $request->answer,
             'explanation'       => $request->explanation,
-            'explanation_image' => $path_explanation_image,
         ]);
 
         return redirect()->route('admin.members.tryouts.show', [
@@ -280,10 +263,6 @@ class TryoutController extends Controller
     public function tryoutEditQuestion(Product $product, SubProduct $subProduct, Tryout $tryout, Question $question)
     {
         $menuProducts = Product::with('subProducts')->get();
-        $question->question_image_name = $question->question_image ? basename($question->question_image) : null;
-        $question->question_image_size = $question->question_image ? Storage::disk('public')->size($question->question_image) : null;
-        $question->explanation_image_name = $question->explanation_image ? basename($question->explanation_image) : null;
-        $question->explanation_image_size = $question->explanation_image ? Storage::disk('public')->size($question->explanation_image) : null;
 
         return inertia('Admin/Members/Tryouts/Questions/Edit', [
             'menuProducts' => $menuProducts,
@@ -298,7 +277,6 @@ class TryoutController extends Controller
     {
         $request->validate([
             'question'          => 'required',
-            'question_image'    => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
             'option_1'          => 'required',
             'option_2'          => 'required',
             'option_3'          => 'required',
@@ -306,27 +284,12 @@ class TryoutController extends Controller
             'option_5'          => 'required',
             'answer'            => 'required',
             'explanation'       => 'nullable',
-            'explanation_image' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
         ], [
             'answer.required'         => 'Silahkan pilih jawaban benar.',
-            'question_image.image'    => 'Gambar pertanyaan harus berupa file gambar.',
-            'question_image.mimes'    => 'Gambar pertanyaan harus berekstensi jpg, jpeg, atau png.',
-            'question_image.max'      => 'Ukuran gambar pertanyaan maksimal 10MB.',
-            'explanation_image.image' => 'Gambar pembahasan harus berupa file gambar.',
-            'explanation_image.mimes' => 'Gambar pembahasan harus berekstensi jpg, jpeg, atau png.',
-            'explanation_image.max'   => 'Ukuran gambar pembahasan maksimal 10MB.',
         ]);
-
-        $path_question_image = $request->hasFile('question_image')
-            ? $request->file('question_image')->store('questions', 'public')
-            : $question->question_image;
-        $path_explanation_image = $request->hasFile('explanation_image')
-            ? $request->file('explanation_image')->store('questions', 'public')
-            : $question->explanation_image;
 
         $question->update([
             'question'          => $request->question,
-            'question_image'    => $path_question_image,
             'option_1'          => $request->option_1,
             'option_2'          => $request->option_2,
             'option_3'          => $request->option_3,
@@ -334,7 +297,6 @@ class TryoutController extends Controller
             'option_5'          => $request->option_5,
             'answer'            => $request->answer,
             'explanation'       => $request->explanation,
-            'explanation_image' => $path_explanation_image,
         ]);
 
         return redirect()->route('admin.members.tryouts.show', [
@@ -346,14 +308,6 @@ class TryoutController extends Controller
 
     public function tryoutDestroyQuestion(Product $product, SubProduct $subProduct, Tryout $tryout, Question $question)
     {
-        if ($question->question_image && Storage::disk('public')->exists($question->question_image)) {
-            Storage::disk('public')->delete($question->question_image);
-        }
-
-        if ($question->explanation_image && Storage::disk('public')->exists($question->explanation_image)) {
-            Storage::disk('public')->delete($question->explanation_image);
-        }
-
         $question->delete();
 
         return redirect()->route('admin.members.tryouts.show', [

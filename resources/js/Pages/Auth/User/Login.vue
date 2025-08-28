@@ -7,7 +7,9 @@
         <div class="d-flex flex-column flex-root bg-myprimary" id="kt_app_root">
             <div class="d-flex flex-column h-100 w-100 w-sm-500px w-md-550px w-lg-600px mx-auto">
                 <div class="d-flex flex-center p-15 p-lg-20">
-                    <img alt="Logo" src="/assets/media/logos/logo-full-white.png" class="h-40px h-md-50px" />
+                    <a href="/">
+                        <img alt="Logo" src="/assets/media/logos/logo-full-white.png" class="h-40px h-md-50px" />
+                    </a>
                 </div>
                 <div class="d-flex flex-column h-100 justify-content-center mx-8">
                     <form @submit.prevent="submit">

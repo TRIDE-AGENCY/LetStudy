@@ -27,14 +27,16 @@ class ProfileController extends Controller
             'about'     => 'required',
             'phone'     => 'required',
             'email'     => 'required',
-            'community' => 'required',
+            'whatsapp_community' => 'required',
+            'telegram_community' => 'required',
         ]);
 
         $profile->update([
             'about'     => $request->about,
             'phone'     => $request->phone,
             'email'     => $request->email,
-            'community' => $request->community,
+            'whatsapp_community' => $request->whatsapp_community,
+            'telegram_community' => $request->telegram_community,
         ]);
 
         return redirect()->route('admin.profile');

@@ -14,7 +14,8 @@ class ProfileTableSeeder extends Seeder
             'about'     => '...',
             'phone'     => '...',
             'email'     => '...',
-            'community' => '...',
+            'whatsapp_community' => '...',
+            'telegram_community' => '...',
         ]);
     }
 }

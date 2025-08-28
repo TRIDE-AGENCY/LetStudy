@@ -144,9 +144,13 @@
                                     <div class="fv-row">
                                         <label class="required form-label fs-6">Pendidikan</label>
                                         <textarea class="form-control fs-5" data-kt-autosize="true" rows="3" required
-                                            placeholder="Masukkan pendidkan disini..." v-model="form.name"
+                                            placeholder="Masukkan pendidikan disini..." v-model="form.name"
                                             :class="{ 'is-invalid': errors.name }">
                                         </textarea>
+                                        <p v-if="!isEditMode" class="fs-6 text-gray-500 mb-0 mt-2">
+                                            <i class="ri-information-2-line text-gray-500"></i>
+                                            Pisahkan dengan koma jika lebih dari satu.
+                                        </p>
                                         <div v-if="errors.name" class="text-mydanger mt-2">
                                             {{ errors . name }}
                                         </div>
@@ -240,9 +244,7 @@
                     submitBtn.setAttribute('disabled', true);
                 }
 
-                const payload = new FormData();
-                payload.append('type', form.type);
-                payload.append('name', form.name);
+                const names = form.name.split(',').map(n => n.trim()).filter(n => n !== '');
 
                 const cleanup = () => {
                     if (submitBtn) {
@@ -252,6 +254,9 @@
                 };
 
                 if (isEditMode.value && editing.value) {
+                    const payload = new FormData();
+                    payload.append('type', form.type);
+                    payload.append('name', form.name);
                     payload.append('_method', 'PUT');
                     router.post(`/admin/master/educations/${editing.value.id}`, payload, {
                         onSuccess: () => {
@@ -271,7 +276,10 @@
                         onFinish: cleanup
                     });
                 } else {
-                    router.post('/admin/master/educations', payload, {
+                    router.post('/admin/master/educations', {
+                        type: form.type, 
+                        names: names
+                    }, {
                         onSuccess: () => {
                             Swal.fire({
                                 icon: 'success',

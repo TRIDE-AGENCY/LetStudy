@@ -31,15 +31,6 @@
                         <div class="card rounded-4 border border-gray-300">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
                                 <h3 class="required mb-0">Pertanyaan</h3>
-                                <div class="collapsible toggle collapsed"
-                                    data-bs-toggle="collapse" data-bs-target="#question-collapse">
-                                    <button type="button" class="toggle-off btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0">
-                                        Tambah Gambar
-                                    </button>
-                                    <button type="button" class="toggle-on btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0">
-                                        Hapus Gambar
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body p-6">
                                 <div class="fv-row">
@@ -52,89 +43,65 @@
                                         {{ errors . question }}
                                     </div>
                                 </div>
-                                <div id="question-collapse" class="mt-5 fv-row collapse">
-                                    <div id="question-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
-                                        <div class="dz-message needsclick flex-column text-center gap-5 p-5">
-                                            <i class="ri-image-add-line text-myprimary fs-3x"></i>
-                                            <div>
-                                                <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
-                                                <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div v-if="errors.question_image" class="text-mydanger mt-2">
-                                        {{ errors . question_image }}
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="card rounded-4 border border-gray-300 mt-6">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
-                                <h3 class="required mb-0">Pilihan Jawaban</h3>
+                                <h3 class="mb-0">Pilihan Jawaban</h3>
                             </div>
                             <div class="card-body p-6">
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">A</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_1"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan A disini..."
-                                            :class="{ 'is-invalid': errors.option_1 }" />
-                                    </div>
-                                    <div v-if="errors.option_1" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan A</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_1" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_1" class="text-mydanger mt-2">
                                         {{ errors . option_1 }}
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">B</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_2"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan B disini..."
-                                            :class="{ 'is-invalid': errors.option_2 }" />
-                                    </div>
-                                    <div v-if="errors.option_2" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan B</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_2" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_2" class="text-mydanger mt-2">
                                         {{ errors . option_2 }}
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">C</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_3"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan C disini..."
-                                            :class="{ 'is-invalid': errors.option_3 }" />
-                                    </div>
-                                    <div v-if="errors.option_3" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan C</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_3" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_3" class="text-mydanger mt-2">
                                         {{ errors . option_3 }}
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">D</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_4"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan D disini..."
-                                            :class="{ 'is-invalid': errors.option_4 }" />
-                                    </div>
-                                    <div v-if="errors.option_4" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan D</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_4" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_4" class="text-mydanger mt-2">
                                         {{ errors . option_4 }}
                                     </div>
                                 </div>
-                                <div class="fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">E</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_5"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan E disini..."
-                                            :class="{ 'is-invalid': errors.option_5 }" />
-                                    </div>
-                                    <div v-if="errors.option_5" class="text-danger mt-2">
+                                <div class="mb-5 fv-row">
+                                    <label class="required form-label fs-6">Pilihan E</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_5" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_5" class="text-mydanger mt-2">
                                         {{ errors . option_5 }}
                                     </div>
                                 </div>
@@ -188,7 +155,7 @@
                                         E
                                     </label>
                                 </div>
-                                <div v-if="errors.answer" class="text-danger mt-2">
+                                <div v-if="errors.answer" class="text-mydanger mt-2">
                                     {{ errors . answer }}
                                 </div>
                             </div>
@@ -196,15 +163,6 @@
                         <div class="card rounded-4 border border-gray-300 mt-6">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
                                 <h3 class="mb-0">Pembahasan</h3>
-                                <div class="collapsible toggle collapsed"
-                                    data-bs-toggle="collapse" data-bs-target="#explanation-collapse">
-                                    <button type="button" class="toggle-off btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0">
-                                        Tambah Gambar
-                                    </button>
-                                    <button type="button" class="toggle-on btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0">
-                                        Hapus Gambar
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body p-6">
                                 <div class="fv-row">
@@ -217,20 +175,6 @@
                                         {{ errors . explanation }}
                                     </div>
                                 </div>
-                                <div id="explanation-collapse" class="mt-5 fv-row collapse">
-                                    <div id="explanation-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
-                                        <div class="dz-message needsclick flex-column text-center gap-5 p-5">
-                                            <i class="ri-image-add-line text-myprimary fs-3x"></i>
-                                            <div>
-                                                <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
-                                                <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div v-if="errors.explanation_image" class="text-mydanger mt-2">
-                                        {{ errors . explanation_image }}
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end mt-7">
@@ -239,7 +183,7 @@
                             <button type="submit" id="submit_button"
                                 class="btn btn-sm btn-myprimary fs-5">
                                 <span class="indicator-label">
-                                    Edit Soal
+                                    Tambah Soal
                                 </span>
                                 <span class="indicator-progress">
                                     Mohon Tunggu... <span
@@ -283,7 +227,6 @@
         setup(props) {
             const form = reactive({
                 question: props.question.question,
-                question_image: null,
                 option_1: props.question.option_1,
                 option_2: props.question.option_2,
                 option_3: props.question.option_3,
@@ -291,131 +234,52 @@
                 option_5: props.question.option_5,
                 answer: props.question.answer.toString(),
                 explanation: props.question.explanation ?? '',
-                explanation_image: null,
             });
 
             const editorInit = {
                 menubar: false,
-                plugins: 'advlist lists emoticons autoresize',
-                toolbar:
-                    'undo redo | bold italic underline | bullist numlist | emoticons',
+                plugins: 'advlist lists emoticons autoresize image',
+                toolbar: 'undo redo | bold italic underline | bullist numlist | image emoticons',
                 block_formats: 'Paragraf=p',
                 min_height: 200,
-                max_height: 300,
+                max_height: 600,
+                paste_data_images: true,
+                automatic_uploads: true,
+                images_upload_handler: (blobInfo, progress) => new Promise((resolve, reject) => {
+                    try {
+                    const mime = blobInfo.blob().type || 'image/png';
+                    const dataUrl = `data:${mime};base64,${blobInfo.base64()}`;
+                    resolve(dataUrl); 
+                    } catch (e) {
+                    reject('Gagal mengubah gambar ke base64');
+                    }
+                }),
+
+                file_picker_types: 'image',
+                file_picker_callback: (cb, value, meta) => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+
+                    input.onchange = () => {
+                        const file = input.files?.[0];
+                        if (!file) return;
+
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            cb(reader.result, { title: file.name });
+                        };
+                        reader.readAsDataURL(file);
+                    };
+
+                    input.click();
+                },
                 content_style: `
                     @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
                     body {
                         font-family: 'Inter', sans-serif;
                     }
                 `
-            };
-
-            const createDropzone = (selector, { paramName, onSet, maxSizeMB = 10 }) => {
-                return new Dropzone(selector, {
-                    url: '/',                    // tidak dipakai
-                    paramName,
-                    maxFiles: 1,
-                    maxFilesize: maxSizeMB,
-                    acceptedFiles: 'image/jpeg,image/png,image/jpg,image/webp',
-                    autoProcessQueue: false,
-                    addRemoveLinks: true,
-                    dictRemoveFile: 'Hapus',
-                    init: function () {
-                    this.on('addedfile', (file) => {
-                        // Jika user menambahkan file baru, pastikan satu saja
-                        if (this.files.length > 1) {
-                        this.removeFile(this.files[0]);
-                        }
-                        onSet(file, { isMock: false, dz: this });
-                    });
-                    this.on('removedfile', (file) => {
-                        onSet(null, { isRemove: true, removedFile: file, dz: this });
-                    });
-                    },
-                });
-            };
-
-            const seedExistingFile = (dz, { url, name = 'Gambar', size = 12345 }) => {
-                const mockFile = { name, size };
-                dz.emit('addedfile', mockFile);
-                dz.emit('thumbnail', mockFile, url);
-                dz.emit('complete', mockFile);
-                if (mockFile.previewElement) {
-                    mockFile.previewElement.classList.add('dz-success', 'dz-complete');
-                }
-                return mockFile;
-            };
-
-            let dzQuestion = null;
-            let dzExplanation = null;
-
-            let mockQuestion = null;
-            let mockExplanation = null;
-
-            onMounted(() => {
-                if (props.question.question_image) forceOpenCollapse('#question-collapse');
-                if (props.question.explanation_image) forceOpenCollapse('#explanation-collapse');
-
-                Dropzone.autoDiscover = false;
-
-                dzQuestion = createDropzone('#question-dropzone', {
-                    paramName: 'question_image',
-                    onSet: (file, meta) => {
-                    if (file) {
-                        form.question_image = file;
-                        form.question_image_remove = 0;
-                    } else if (meta?.isRemove) {
-                        if (!form.question_image) form.question_image_remove = 1;
-                    }
-                    },
-                });
-
-                dzExplanation = createDropzone('#explanation-dropzone', {
-                    paramName: 'explanation_image',
-                    onSet: (file, meta) => {
-                    if (file) {
-                        form.explanation_image = file;
-                        form.explanation_image_remove = 0;
-                    } else if (meta?.isRemove) {
-                        if (!form.explanation_image) form.explanation_image_remove = 1;
-                    }
-                    },
-                });
-
-                if (props.question.question_image) {
-                    const url = `/storage/${props.question.question_image}`;
-                    mockQuestion = seedExistingFile(dzQuestion, {
-                        url,
-                        name: props.question.question_image_name ?? 'Gambar Pertanyaan',
-                        size: props.question.question_image_size ?? 12345,
-                    });
-                    form.question_image_remove = 0;
-                }
-
-                if (props.question.explanation_image) {
-                    const url = `/storage/${props.question.explanation_image}`;
-                    mockExplanation = seedExistingFile(dzExplanation, {
-                        url,
-                        name: props.question.explanation_image_name ?? 'Gambar Pembahasan',
-                        size: props.question.explanation_image_size ?? 12345,
-                    });
-                    form.explanation_image_remove = 0;
-                }
-            });
-
-            onUnmounted(() => {
-                if (dzQuestion) { dzQuestion.destroy(); dzQuestion = null; }
-                if (dzExplanation) { dzExplanation.destroy(); dzExplanation = null; }
-            });
-
-            const forceOpenCollapse = (selector) => {
-                const el = document.querySelector(selector);
-                if (el) el.classList.add('show');
-                const toggleBtn = document.querySelector(`[data-bs-target="${selector}"]`);
-                if (toggleBtn) {
-                    toggleBtn.classList.remove('collapsed');
-                    toggleBtn.setAttribute('aria-expanded', 'true');
-                }
             };
 
             const submit = () => {
@@ -434,12 +298,6 @@
                 payload.append('option_5', form.option_5);
                 payload.append('answer', form.answer);
                 payload.append('explanation', form.explanation);
-                if (form.question_image && (form.question_image instanceof File || form.question_image instanceof Blob)) {
-                    payload.append('question_image', form.question_image);
-                }
-                if (form.explanation_image && (form.explanation_image instanceof File || form.explanation_image instanceof Blob)) {
-                    payload.append('explanation_image', form.explanation_image);
-                }
 
                 const cleanup = () => {
                     if (submitBtn) {

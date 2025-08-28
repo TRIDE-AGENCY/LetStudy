@@ -10,7 +10,9 @@
 				<div class="d-flex flex-column flex-lg-row-auto w-lg-400px w-xl-550px">
 					<div class="d-flex flex-column position-lg-fixed top-0 bottom-0 w-lg-400px w-xl-550px bg-myprimary">
 						<div class="d-flex flex-center p-15 p-lg-20">
-                            <img alt="Logo" src="/assets/media/logos/logo-full-white.png" class="h-40px h-md-50px" />
+                            <a href="/">
+                                <img alt="Logo" src="/assets/media/logos/logo-full-white.png" class="h-40px h-md-50px" />
+                            </a>
 						</div>
                         <div class="px-8 px-sm-20 px-lg-10 px-xl-12">
                             <h1 class="text-center text-white lh-sm fw-bold fs-2qx fs-xl-2x mb-4">
@@ -36,7 +38,7 @@
 											<h3 class="stepper-title fs-1 mb-0">Informasi Pribadi</h3>
 										</div>
 									</div>
-									<div class="stepper-line h-40px"></div>
+									<div class="ms-8 stepper-line h-40px"></div>
 								</div>
                                 <div class="stepper-item" data-kt-stepper-element="nav">
 									<div class="stepper-wrapper">
@@ -60,7 +62,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="d-flex flex-column flex-row-fluid py-15 py-lg-0">
+				<div class="d-flex bg-white flex-column flex-row-fluid py-15 py-lg-0">
 					<div class="d-flex flex-center flex-column flex-column-fluid">
 						<div class="w-100 w-sm-500px mx-auto">
 							<form @submit.prevent="submit" class="my-auto px-8 px-sm-20 px-lg-10 px-xl-12 w-100">
@@ -104,21 +106,51 @@
                                             </div>
                                         </div>
                                         <div class="mb-6 fv-row">
-                                            <label class="form-label fs-6">Tempat, Tanggal Lahir</label>
+                                            <label class="form-label fs-6">Tempat Lahir</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control fs-5" v-model="form.birth_place"
-                                                    placeholder="Kota Asal" />
-                                                <input class="form-control fs-5" v-model="form.birth_date"
-                                                    placeholder="Pilih Tanggal Lahir" id="kt_datepicker_1"/>
+                                                <select class="form-select fs-5" v-model="form.province_id"
+                                                    :class="[
+                                                        { 'is-invalid': errors.province_id },
+                                                        form.province_id === '' ? 'text-gray-400' : 'text-dark'
+                                                    ]">
+                                                    <option disabled value="">Provinsi</option>
+                                                    <option class="text-dark" v-for="province in provinces"
+                                                        :key="province.id" :value="province.id">
+                                                        {{ province.name }}
+                                                    </option>
+                                                </select>
+                                                <select class="form-select fs-5" v-model="form.city_id"
+                                                    :class="[
+                                                        { 'is-invalid': errors.city_id },
+                                                        form.city_id === '' ? 'text-gray-400' : 'text-dark'
+                                                    ]">
+                                                    <option disabled value="">Kab / Kota</option>
+                                                    <option class="text-dark" v-for="city in filteredCities"
+                                                        :key="city.id" :value="city.id">
+                                                        {{ city.name }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mb-6 fv-row">
+                                            <label class="form-label fs-6">Tanggal Lahir</label>
+                                            <input class="form-control fs-5" v-model="form.birth_date"
+                                                    placeholder="Pilih tanggal lahir" id="kt_datepicker_1"/>
+                                            <div v-if="errors.birth_date" class="text-mydanger mt-2">
+                                                {{ errors . birth_date }}
                                             </div>
                                         </div>
                                         <div class="fv-row">
                                             <label class="required form-label fs-6">Asal Sekolah / Kampus</label>
                                             <select class="form-select fs-5" required v-model="form.education"
-                                                :class="{ 'is-invalid': errors.education }">
-                                                <option v-for="(education, index) in educations" :key="index"
+                                                :class="[
+                                                    { 'is-invalid': errors.city_id },
+                                                    !form.education ? 'text-gray-400' : 'text-dark'
+                                                ]">
+                                                <option disabled value="">Pilih asal sekolah / kampus</option>
+                                                <option class="text-dark" v-for="(education, index) in educations" :key="index"
                                                     :value="education.name">{{ education . name }}</option>
-                                                <option value="Lainnya">Lainnya</option>
+                                                <option class="text-dark" value="Lainnya">Lainnya</option>
                                             </select>
                                             <div v-if="form.education === 'Lainnya'" class="mt-3">
                                                 <input type="text" class="form-control fs-5" v-model="form.education_other"
@@ -191,7 +223,7 @@
 
 <script>
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive, computed, onMounted } from 'vue';
+    import { reactive, computed, onMounted, watch } from 'vue';
     import flatpickr from 'flatpickr';
 
     export default {
@@ -202,20 +234,34 @@
 
         props: {
             errors: Object,
+            provinces: Array,
+            cities: Array,
             educations: Array,
         },
 
-        setup() {
+        setup(props) {
             const form = reactive({
                 name: '',
                 gender: '',
-                birth_place: '',
+                province_id: '',
+                city_id: '',
                 birth_date: '',
                 education: '',
                 education_other: '',
                 email: '',
                 password: '',
                 password_confirmation: '',
+            });
+
+            const filteredCities = computed(() => {
+                if (!form.province_id) return [];
+                return props.cities.filter(
+                    (c) => c.province_id === parseInt(form.province_id)
+                );
+            });
+
+            watch(() => form.province_id, () => {
+                form.city_id = '';
             });
 
             const isStepOneValid = computed(() => {
@@ -277,6 +323,7 @@
 
             return {
                 form,
+                filteredCities,
                 isStepOneValid,
                 submit,
             };

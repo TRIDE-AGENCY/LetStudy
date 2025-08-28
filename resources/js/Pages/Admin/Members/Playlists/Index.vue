@@ -65,7 +65,7 @@
                                             </div>
                                             <p class="text-dark fs-1 fs-lg-2 fw-bold mb-0 text-truncate-3">{{ playlist.title }}</p>
                                         </div>
-                                        <p class="fs-5 text-gray-600 m-0">10 Video</p>
+                                        <p class="fs-5 text-gray-600 m-0">{{ playlist.playlist_videos_count ?? 0 }} Video</p>
                                     </div>
                                 </Link>
                             </div>

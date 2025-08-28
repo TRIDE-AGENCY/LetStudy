@@ -139,34 +139,32 @@
                                                         <span class="accordion-icon mt-1">
                                                             <i class="ri-add-box-fill fs-3"></i>
                                                         </span>
-                                                        <p class="text-dark mb-0 ms-3" id="content-editor question-editor"
+                                                        <p class="text-dark mb-0 ms-3" id="question-editor"
                                                             v-html="question.question">
                                                         </p>
                                                     </div>
                                                     <div :id="`kt_accordion_2_item_${index}`" class="fs-5 collapse ps-8"
                                                         data-bs-parent="#kt_accordion_2">
-                                                        <img v-if="question.question_image" class="mb-4 rounded" :src="`/storage/${question.question_image}`" alt="Gambar Soal" height="150">
                                                         <ol type="A" class="ps-8 mb-4">
-                                                            <li class="ps-2" v-html="question.option_1"
+                                                            <li class="ps-2" id="question-editor" v-html="question.option_1"
                                                                 :class="{ 'text-mysecondary fw-bolder': question.answer == '1' }">
                                                             </li>
-                                                            <li class="ps-2" v-html="question.option_2"
+                                                            <li class="ps-2" id="question-editor" v-html="question.option_2"
                                                                 :class="{ 'text-mysecondary fw-bolder': question.answer == '2' }">
                                                             </li>
-                                                            <li class="ps-2" v-html="question.option_3"
+                                                            <li class="ps-2" id="question-editor" v-html="question.option_3"
                                                                 :class="{ 'text-mysecondary fw-bolder': question.answer == '3' }">
                                                             </li>
-                                                            <li class="ps-2" v-html="question.option_4"
+                                                            <li class="ps-2" id="question-editor" v-html="question.option_4"
                                                                 :class="{ 'text-mysecondary fw-bolder': question.answer == '4' }">
                                                             </li>
-                                                            <li class="ps-2" v-html="question.option_5"
+                                                            <li class="ps-2" id="question-editor" v-html="question.option_5"
                                                                 :class="{ 'text-mysecondary fw-bolder': question.answer == '5' }">
                                                             </li>
                                                         </ol>
-                                                        <p v-if="question.explanation" id="content-editor question-editor"
-                                                            v-html="question.question" class="text-dark mb-4">
+                                                        <p v-if="question.explanation" id="question-editor"
+                                                            v-html="question.explanation" class="text-dark mb-4">
                                                         </p>
-                                                        <img v-if="question.explanation_image" class="mb-4 rounded" :src="`/storage/${question.explanation_image}`" alt="Gambar Pembahasan" height="150">
                                                     </div>
                                                 </td>
                                                 <td class="pe-6 d-flex justify-content-end align-items-center gap-2">

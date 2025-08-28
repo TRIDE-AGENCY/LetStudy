@@ -13,6 +13,7 @@ class Profile extends Model
         'about',
         'phone',
         'email',
-        'community',
+        'whatsapp_community',
+        'telegram_community'
     ];
 }

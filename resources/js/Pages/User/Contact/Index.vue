@@ -48,17 +48,46 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a :href="`${profile.community}`" target="_blank" class="card card-hover rounded-4 border border-gray-300">
+                                <div data-bs-toggle="modal" data-bs-target="#kt_modal_community" 
+                                    class="card card-hover cursor-pointer rounded-4 border border-gray-300">
                                     <div class="card-body d-flex flex-grow align-items-center gap-4 p-6">
                                         <div class="p-2 rounded d-flex align-items-center justify-content-center">
-                                            <i class="ri-whatsapp-line text-myprimary fs-3qx"></i>
+                                            <i class="ri-global-line text-myprimary fs-3qx"></i>
                                         </div>
                                         <div class="d-flex flex-column flex-grow-1">
                                             <h3 class="mb-2">Komunitas</h3>
-                                            <p class="fs-3 fw-semibold text-gray-600 mb-0 text-truncate-1 white-space-nowrap">WhatsApp Group</p>
+                                            <p class="fs-3 fw-semibold text-gray-600 mb-0 text-truncate-1 white-space-nowrap">WhatsApp & Telegram</p>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
+                                <div class="modal fade" id="kt_modal_community" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered justify-content-center">
+                                        <div class="modal-content rounded-4 mw-400px mw-md-500px">
+                                            <div class="modal-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px">
+                                                <h2 class="modal-title">
+                                                    Gabung Komunitas
+                                                </h2>
+                                                <div class="btn btn-sm btn-icon btn-mylighten rounded-pill" data-bs-dismiss="modal">
+                                                    <i class="bi bi-x-lg fs-3"></i>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body p-6 d-flex gap-4">
+                                                <a :href="`${profile.whatsapp_community}`" target="_blank" class="card card-hover w-100 d-flex flex-column flex-center p-6 border border-gray-300 rounded">
+                                                    <i class="ri-whatsapp-line fs-3tx text-myprimary mb-4"></i>
+                                                    <p class="text-center text-dark fs-3 fw-semibold mb-0">
+                                                        WhatsApp Group
+                                                    </p>
+                                                </a>
+                                                <a :href="`${profile.telegram_community}`" target="_blank" class="card card-hover w-100 d-flex flex-column flex-center p-6 border border-gray-300 rounded">
+                                                    <i class="ri-telegram-2-fill fs-3tx text-myprimary mb-4"></i>
+                                                    <p class="text-center text-dark fs-3 fw-semibold mb-0">
+                                                        Telegram Group
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-8">
@@ -100,7 +129,7 @@
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-end">
-                                            <button type="reset" class="btn btn-sm btn-mylighten fs-5 me-3">Reset</button>
+                                            <button type="reset" @click="resetForm" class="btn btn-sm btn-mylighten fs-5 me-3">Reset</button>
                                             <button type="submit" id="submit_button"
                                                 class="btn btn-sm btn-myprimary fs-5">
                                                 <span class="indicator-label">
@@ -157,6 +186,12 @@
                 message: '',
             });
 
+            const resetForm = () => {
+                form.name = '';
+                form.email = '';
+                form.message = '';
+            };
+
             const formatWhatsapp = (number) => {
                 if (!number || !number.startsWith('62') || number.length < 10) return number;
                 const prefix = '+62';
@@ -206,6 +241,7 @@
                 formatWhatsapp,
                 form,
                 submit,
+                resetForm
             };
         }
     };

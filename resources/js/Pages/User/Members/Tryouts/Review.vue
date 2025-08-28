@@ -39,32 +39,31 @@
                                 </div>
                                 <div class="card-body p-7 ">
                                     <div v-if="question_active !== null">
-                                        <div class="fs-5 fw-semibold text-dark"
+                                        <div id="question-editor" class="fs-5 fw-semibold text-dark"
                                             v-html="question_active.question.question"></div>
-                                        <img v-if="question_active.question.question_image" class="img-fluid rounded mt-1 mh-300px" :src="`/storage/${question_active.question.question_image}`" alt="Gambar Soal">
                                         <div class="d-flex flex-column gap-3 mt-6">
                                             <div v-for="(answer, index) in answer_order" :key="index"
-                                                class="d-flex align-items-center p-4 border border-gray-300 rounded gap-3"
+                                                class="d-flex align-items-center px-4 pt-4 border border-gray-300 rounded gap-3"
                                                 :class="{
                                                     'btn-tryout-correct': (question_active.is_correct == 'Y' && question_active.answer == answer) ||
                                                         (question_active.is_correct == 'N' && question_active.question.answer == answer),
                                                     'btn-tryout-incorrect': question_active.is_correct == 'N' &&
                                                         question_active.answer == answer
                                                 }">
-                                                <div class="text-center fs-5 w-30px" style="flex-shrink: 0;"
+                                                <div class="text-center fs-5 w-30px pb-4" style="flex-shrink: 0;"
                                                     :class="{ 'fw-bolder': answer == question_active.answer ||
                                                         (question_active.is_correct == 'N' && question_active.question.answer == answer) }">
                                                     {{ options[index] }}
                                                 </div>
-                                                <div class="fs-5 w-100"
+                                                <div class="fs-5 w-100" id="question-editor"
                                                     v-html="question_active.question['option_'+answer]">
                                                 </div>
-                                                <p class="fs-5 fw-semibold mb-0 me-2" v-if="
+                                                <p class="fs-5 fw-semibold mb-0 me-2 pb-4" v-if="
                                                     (question_active.is_correct == 'Y' && question_active.answer == answer) ||
                                                     (question_active.is_correct == 'N' && question_active.question.answer == answer)">
                                                     Benar
                                                 </p>
-                                                <p class="fs-5 fw-semibold mb-0 me-2" v-else-if="question_active.is_correct == 'N' && question_active.answer == answer">
+                                                <p class="fs-5 fw-semibold mb-0 me-2 pb-4" v-else-if="question_active.is_correct == 'N' && question_active.answer == answer">
                                                     Salah
                                                 </p>
                                             </div>

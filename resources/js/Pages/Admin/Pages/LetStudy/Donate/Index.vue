@@ -135,24 +135,39 @@
                                 <div class="col-12 col-md-8 col-xl-9 card-body p-6">
                                     <div class="mb-5 fv-row">
                                         <label class="form-label fs-6">Pencapaian 1</label>
-                                        <select class="form-select fs-5" v-model="form.achievement1_id">
-                                            <option v-for="achievement in achievements" :key="achievement.id" :value="achievement.id">
+                                        <select class="form-select fs-5" v-model="form.achievement1_id"
+                                            :class="[
+                                                { 'is-invalid': errors.achievement1_id },
+                                                !form.achievement1_id ? 'text-gray-400' : 'text-dark'
+                                            ]">
+                                            <option value="">Pilih pencapaian 1</option>
+                                            <option class="text-dark" v-for="achievement in achievements" :key="achievement.id" :value="achievement.id">
                                                 {{ achievement.title }} − {{ achievement.value }}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="mb-5 fv-row">
                                         <label class="form-label fs-6">Pencapaian 2</label>
-                                        <select class="form-select fs-5" v-model="form.achievement2_id">
-                                            <option v-for="achievement in achievements" :key="achievement.id" :value="achievement.id">
+                                        <select class="form-select fs-5" v-model="form.achievement2_id"
+                                            :class="[
+                                                { 'is-invalid': errors.achievement2_id },
+                                                !form.achievement2_id ? 'text-gray-400' : 'text-dark'
+                                            ]">
+                                            <option value="">Pilih pencapaian 2</option>
+                                            <option class="text-dark" v-for="achievement in achievements" :key="achievement.id" :value="achievement.id">
                                                 {{ achievement.title }} − {{ achievement.value }}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="fv-row">
                                         <label class="form-label fs-6">Pencapaian 3</label>
-                                        <select class="form-select fs-5" v-model="form.achievement3_id">
-                                            <option v-for="achievement in achievements" :key="achievement.id" :value="achievement.id">
+                                        <select class="form-select fs-5" v-model="form.achievement3_id"
+                                            :class="[
+                                                { 'is-invalid': errors.achievement3_id },
+                                                !form.achievement3_id ? 'text-gray-400' : 'text-dark'
+                                            ]">
+                                            <option value="">Pilih pencapaian 3</option>
+                                            <option class="text-dark" v-for="achievement in achievements" :key="achievement.id" :value="achievement.id">
                                                 {{ achievement.title }} − {{ achievement.value }}
                                             </option>
                                         </select>

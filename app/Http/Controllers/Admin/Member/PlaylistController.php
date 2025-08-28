@@ -17,6 +17,7 @@ class PlaylistController extends Controller
         $menuProducts = Product::with('subProducts')->get();
         $playlists = Playlist::where('sub_product_id', $subProduct->id)
             ->with('subProduct')
+            ->withCount('playlistVideos')
             ->latest()
             ->paginate(100);
 

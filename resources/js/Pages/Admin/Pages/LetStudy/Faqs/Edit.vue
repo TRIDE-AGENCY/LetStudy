@@ -37,11 +37,15 @@
                                         <div class="mb-5 fv-row">
                                             <label class="required form-label fs-6">Kategori</label>
                                             <select class="form-select fs-5" required v-model="form.category"
-                                                :class="{ 'is-invalid': errors.category }">
-                                                <option value="General">General</option>
-                                                <option value="Seputar LetStudy">Seputar LetStudy</option>
-                                                <option value="Cara Penggunaan">Cara Penggunaan</option>
-                                                <option v-for="(product, index) in products" :key="index"
+                                                :class="[
+                                                    { 'is-invalid': errors.category },
+                                                    !form.category ? 'text-gray-400' : 'text-dark'
+                                                ]">
+                                                <option disabled value="">Pilih kategori</option>
+                                                <option class="text-dark" value="General">General</option>
+                                                <option class="text-dark" value="Seputar LetStudy">Seputar LetStudy</option>
+                                                <option class="text-dark" value="Cara Penggunaan">Cara Penggunaan</option>
+                                                <option class="text-dark" v-for="(product, index) in products" :key="index"
                                                     :value="product.title">{{ product . title }}</option>
                                             </select>
                                             <div v-if="errors.category" class="text-mydanger mt-2">

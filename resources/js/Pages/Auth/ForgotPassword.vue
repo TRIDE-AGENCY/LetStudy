@@ -17,7 +17,7 @@
                                 Lupa Kata Sandi
                             </h1>
                             <p class="text-center text-gray-600 opacity-75 fs-4 mb-10 mb-md-15">
-                                Masukkan alamat email untuk mendapatkan link reset kata sandi akun Anda.
+                                Masukkan alamat email yang pernah kamu daftarkan sebelumnya untuk menerima link reset kata sandi.
                             </p>
                             <div class="d-flex flex-column justify-content-center">
                                 <div class="mb-12 fv-row">

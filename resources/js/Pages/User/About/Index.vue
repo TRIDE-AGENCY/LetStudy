@@ -36,46 +36,20 @@
                     </div>
                 </div>
             </div>
-            <div id="products" class="container d-flex flex-column pt-20 mt-20">
+            <div id="products" v-if="products.length > 0"
+                class="container d-flex flex-column flex-center pt-20 mt-20">
                 <div class="row g-6 justify-content-center">
-                    <div class="col-12 col-sm-6 col-xl-4">
+                    <div v-for="(product, index) in products" :key="index" 
+                        class="col-12 col-sm-6 col-lg-4">
                         <div class="card card-hover align-self-center flex-column justify-content-between h-100 p-8 gap-8 rounded-4 border border-gray-300">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="w-175px mb-6" src="/assets/media/logos/logo-letstudy-ptn.png" alt="LetStudy PTN">
+                                <img class="w-175px mb-6" :src="`/storage/${product.logo}`" :alt="`${product.title}`">
                                 <p class="text-center text-gray-600 fs-5 mb-0">
-                                    LetStudy PTN, sebagai layanan yang sangat dibutuhkan oleh siswa SMA dan sederajat dalam progres belajarnya sehari hari untuk persiapan melanjutkan pendidikan mereka di universitas negeri. Dengan menyediakan bahan belajar gratis berkualitas, akan membantu persiapan siswa menghadapi ujian sehari-hari di sekolahnya dan ujian masuk perguruan tinggi. Layanan ini memastikan bahwa siswa memiliki semua sumber daya yang mereka butuhkan untuk berhasil memiliki prestasi akademik yang gemilang.
+                                    {{ product.description }}
                                 </p>
                             </div>
-                            <a href="/letstudy-ptn" class="btn btn-sm btn-myprimary fs-5 d-inline-flex gap-2 align-items-center justify-content-center">
-                                <i class="ri-graduation-cap-line fs-3"></i>
-                                <span>Lihat Produk</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-xl-4">
-                        <div class="card card-hover align-self-center flex-column justify-content-between h-100 p-8 gap-8 rounded-4 border border-gray-300">
-                            <div class="d-flex flex-column align-items-center">
-                                <img class="w-175px mb-6" src="/assets/media/logos/logo-letstudy-english.png" alt="LetStudy English">
-                                <p class="text-center text-gray-600 fs-5 mb-0">
-                                    LetStudy English memenuhi kebutuhan pada era global saat ini. Dengan fokus pada peningkatan kemampuan bahasa Inggris pelajar bertujuan untuk membuka banyak pintu kesempatan, dari pendidikan lebih lanjut di luar negeri hingga karier global.  LetStudy English menyediakan akses ke materi pembelajaran grammar, TOEFL, dan IELTS yang memungkinkan pengguna untuk meningkatkan kemampuan bahasa Inggris mereka secara efektif dan efisien.
-                                </p>
-                            </div>
-                            <a href="/letstudy-english" class="btn btn-sm btn-myprimary fs-5 d-inline-flex gap-2 align-items-center justify-content-center">
-                                <i class="ri-translate-2 fs-3"></i>
-                                <span>Lihat Produk</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-xl-4">
-                        <div class="card card-hover align-self-center flex-column justify-content-between h-100 p-8 gap-8 rounded-4 border border-gray-300">
-                            <div class="d-flex flex-column align-items-center">
-                                <img class="w-175px mb-6" src="/assets/media/logos/logo-letstudy-karier.png" alt="LetStudy Karier">
-                                <p class="text-center text-gray-600 fs-5 mb-0">
-                                    LetStudy Karier bertujuan untuk membantu mahasiswa akhir dan fresh graduate dengan keterampilan yang dibutuhkan untuk memasuki dunia kerja. Mengakui bahwa transisi dari pendidikan formal ke lingkungan profesional bisa menjadi tantangan. Layanan ini menyediakan panduan, tips, dan strategi untuk tidak hanya bertahan, tetapi juga unggul dalam karier. Selain itu, pengguna dapat meningkatkan skill mereka untuk mempersiapkan generasi muda menghadapi persaingan di pasar kerja.
-                                </p>
-                            </div>
-                            <a href="/letstudy-karier" class="btn btn-sm btn-myprimary fs-5 d-inline-flex gap-2 align-items-center justify-content-center">
-                                <i class="ri-briefcase-line fs-3"></i>
+                            <a :href="`${product.slug}`" class="btn btn-sm btn-myprimary fs-5 d-inline-flex gap-2 align-items-center justify-content-center">
+                                <i :class="[getProductIconClass(product), 'fs-3']"></i>
                                 <span>Lihat Produk</span>
                             </a>
                         </div>
@@ -231,9 +205,10 @@
                             Ruang untuk saling dukung, saling berbagi, saling belajar, dan saling tumbuh bersama setiap waktu.
                         </p>
                         <div class="d-flex gap-4 justify-content-center justify-content-lg-start">
-                            <a :href="`${profile.community}`" target="_blank" class="btn btn-sm btn-myprimary fs-5">
+                            <button data-bs-toggle="modal" data-bs-target="#kt_modal_community"
+                                class="btn btn-sm btn-myprimary fs-5">
                                 Gabung Komunitas
-                            </a>
+                            </button>
                             <a href="/contact-us" class="btn btn-sm btn-mysecondary fs-5">
                                 Hubungi Kami
                             </a>
@@ -241,6 +216,34 @@
                     </div>
                     <img class="img-community position-lg-absolute mt-10 mt-lg-0"
                         src="/assets/media/images/letstudy-together.png" alt="Let's Study Together">
+                </div>
+            </div>
+            <div class="modal fade" id="kt_modal_community" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered justify-content-center">
+                    <div class="modal-content rounded-4 mw-400px mw-md-500px">
+                        <div class="modal-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px">
+                            <h2 class="modal-title">
+                                Gabung Komunitas
+                            </h2>
+                            <div class="btn btn-sm btn-icon btn-mylighten rounded-pill" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg fs-3"></i>
+                            </div>
+                        </div>
+                        <div class="modal-body p-6 d-flex gap-4">
+                            <a :href="`${profile.whatsapp_community}`" target="_blank" class="card card-hover w-100 d-flex flex-column flex-center p-6 border border-gray-300 rounded">
+                                <i class="ri-whatsapp-line fs-3tx text-myprimary mb-4"></i>
+                                <p class="text-center text-dark fs-3 fw-semibold mb-0">
+                                    WhatsApp Group
+                                </p>
+                            </a>
+                            <a :href="`${profile.telegram_community}`" target="_blank" class="card card-hover w-100 d-flex flex-column flex-center p-6 border border-gray-300 rounded">
+                                <i class="ri-telegram-2-fill fs-3tx text-myprimary mb-4"></i>
+                                <p class="text-center text-dark fs-3 fw-semibold mb-0">
+                                    Telegram Group
+                                </p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="donation" class="container d-flex flex-column flex-center pt-20 mt-20">
@@ -289,7 +292,8 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <img src="/assets/media/illustrations/qr-code.png" class="h-100 p-3 rounded card" />
+                                    <img :src="donate.qrcode_image ? `/storage/${donate.qrcode_image}` : '/assets/media/illustrations/qr-code.png'" 
+                                        class="h-100 p-3 rounded card" />
                                 </div>
                             </swiper-slide>
                             <swiper-slide>
@@ -349,6 +353,7 @@
         },
 
         props: {
+            products: Array,
             profile: Object,
             achievements: Array,
             donate: Object,
@@ -488,6 +493,16 @@
                 }
             }, { deep: true });
 
+            const getProductIconClass = (product) => {
+                const map = {
+                    'LetStudy PTN': 'ri-graduation-cap-line',
+                    'LetStudy English': 'ri-translate-2', 
+                    'LetStudy Karier': 'ri-briefcase-line',
+                };
+
+                return map[product.title] || ('ri-record-circle-line');
+            };
+
             const donateAchievements = computed(() => {
                 const d = props.donate ?? {};
                 return [d.achievement1, d.achievement2, d.achievement3].filter(Boolean);
@@ -515,6 +530,7 @@
             };
 
             return {
+                getProductIconClass,
                 donateAchievements,
                 formatCount,
                 formattedBankName,

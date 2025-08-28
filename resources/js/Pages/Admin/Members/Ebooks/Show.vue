@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="d-flex align-items-center gap-3">
                                     <i class="fs-3 text-gray-600 ri-user-voice-line"></i>
-                                    <p class="fs-4 text-gray-600 m-0">{{ ebook.total_tutors ?? 0 }} Tutor</p>
+                                    <p class="fs-4 text-gray-600 m-0">{{ ebook.tutors_count ?? 0 }} Tutor</p>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="row g-8">
                         <div class="col-md-4 col-xl-3">
-                            <img class="w-100 object-fit-cover"
+                            <img class="w-100 rounded-4 object-fit-cover"
                                 :src="`/storage/${ebook.image}`"
                                 :alt="`Sampul ${ebook.title}`">
                         </div>
@@ -71,10 +71,54 @@
                             <div id="content-editor" class="fs-5 mb-8" v-html="ebook.description"></div>
                             <h2 class="text-dark lh-base fs-2x fs-md-1 mb-3">Benefit yang Didapatkan</h2>
                             <div id="content-editor" class="fs-5 mb-8" v-html="ebook.benefit"></div>
-                            <h2 class="text-dark lh-base fs-2x fs-md-1 mb-3">Tutor E-Book</h2>
-                            <p class="text-gray-600 fs-5 mb-8">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
+                            <div v-if="ebook.tutors.length" class="mb-8">
+                                <h2 class="text-dark lh-base fs-2x fs-md-1 mb-3">Tutor E-Book</h2>
+                                <div class="row g-5 justify-content-start">
+                                    <div v-for="(tutor, index) in ebook.tutors" :key="index" role="button"
+                                        @click="setTutor(tutor)" data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal_tutor" class="col-6 col-sm-4 col-xl-3 cursor-pointer">
+                                        <img class="w-100 bg-white p-3 mb-3 rounded border border-gray-300"
+                                            :src="`/storage/${tutor.photo}`" :alt="`${tutor.name}`">
+                                        <h4 class="text-dark text-center lh-sm fs-1 fs-md-2 mb-1">{{ tutor.name }}</h4>
+                                        <p class="text-gray-600 text-center fs-6 mb-0">{{ tutor.education }}</p>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="kt_modal_tutor" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered justify-content-center">
+                                        <div class="modal-content rounded-4 mw-400px mw-md-500px">
+                                            <div class="modal-header ps-6 pe-3 h-60px border-bottom border-gray-300 h-60px h-lg-70px">
+                                                <h2 class="modal-title">Detail Tutor</h2>
+                                                <div class="btn btn-sm btn-icon btn-mylighten rounded-pill" data-bs-dismiss="modal">
+                                                    <i class="bi bi-x-lg fs-3"></i>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body p-6">
+                                                <template v-if="selectedTutor">
+                                                    <div class="d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-6">
+                                                        <img
+                                                            v-if="selectedTutor.photo"
+                                                            :src="`/storage/${selectedTutor.photo}`"
+                                                            :alt="selectedTutor.name"
+                                                            class="w-150px img-fluid h-auto rounded"
+                                                        />
+                                                        <div class="flex-grow-1 w-100">
+                                                            <h4 class="text-center text-sm-start text-dark lh-sm fs-1 fs-md-2 mb-1">{{ selectedTutor.name }}</h4>
+                                                            <p class="text-center text-sm-start text-dark fs-5 mb-6 pb-6 border-bottom border-gray-300">{{ selectedTutor.education }}</p>
+                                                            <p class="text-gray-600 fs-7 mb-1">Topik / Subtopik / Subtes</p>
+                                                            <p class="text-dark fs-5 mb-6">{{ selectedTutor.title }}</p>
+                                                            <p class="text-gray-600 fs-7 mb-1">Pencapaian</p>
+                                                            <p class="text-dark fs-5 mb-6" id="content-editor question-editor" v-html="selectedTutor.achievement"></p>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                                <template v-else>
+                                                    <div class="text-center text-dark lh-sm fs-3 p-6">Gagal memuat, silahkan coba lagi...</div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <h2 class="text-dark lh-base fs-2x fs-md-1 mb-3">Hak Cipta</h2>
                             <p class="text-gray-600 fs-5 mb-0">
                                 Dilarang mengutip atau menduplikasi sebagian atau seluruh isi buku ini dengan cara apa pun, tanpa izin sah dari Team LetStudy. Hukum yang berlaku sesuai dengan UNDANG-UNDANG REPUBLIK INDONESIA terkait Hak Cipta No.28 tahun 2014.
@@ -90,6 +134,7 @@
 <script>
     import LayoutAdmin from '../../../../Layouts/Admin.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
+    import { ref, onMounted } from 'vue'
 
     export default {
         layout: LayoutAdmin,
@@ -106,6 +151,18 @@
         },
 
         setup() {
+            const selectedTutor = ref(null)
+            const setTutor = (tutor) => { selectedTutor.value = tutor }
+
+            onMounted(() => {
+                const el = document.getElementById('kt_modal_tutor')
+                if (el) {
+                    el.addEventListener('hidden.bs.modal', () => {
+                    selectedTutor.value = null
+                    })
+                }
+            })
+
             const formatDate = (dateString) => {
                 if (!dateString) return '';
 
@@ -119,6 +176,8 @@
 
             return {
                 formatDate,
+                selectedTutor,
+                setTutor,
             };
         }
     }

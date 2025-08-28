@@ -262,6 +262,8 @@ Route::prefix('admin')->middleware(['auth', 'role:Admin'])->group(function () {
     });
 
     Route::resource('/products', \App\Http\Controllers\Admin\ProductController::class, ['as' => 'admin']);
+
+    Route::post('/uploads/tinymce', [\App\Http\Controllers\Admin\UploadController::class, 'tinymce'])->name('tinymce.upload');
 });
 
 Route::get('/', \App\Http\Controllers\User\HomeController::class)->name('user.home');

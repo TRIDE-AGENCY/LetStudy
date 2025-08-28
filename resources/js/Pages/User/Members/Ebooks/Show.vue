@@ -58,7 +58,7 @@
                     </div>
                     <div class="row g-8">
                         <div class="col-md-4 col-xl-3">
-                            <img class="w-100 object-fit-cover"
+                            <img class="w-100 rounded-4 object-fit-cover"
                                 :src="`/storage/${ebook.image}`"
                                 :alt="`Sampul ${ebook.title}`">
                         </div>

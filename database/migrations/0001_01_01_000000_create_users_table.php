@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->enum('role', ['Admin', 'User']);
             $table->enum('gender', ['L', 'P']);
-            $table->string('birth_place')->nullable();
+            $table->unsignedBigInteger('province_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('education')->nullable();
             $table->string('email')->unique();

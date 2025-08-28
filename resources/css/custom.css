@@ -564,3 +564,11 @@ img.object-fit-cover {
         right: 3.5rem;
     }
 }
+
+.accordion.accordion-icon-toggle .accordion-icon i {
+    color: var(--bs-myprimary-400) !important;
+}
+
+.accordion.accordion-icon-toggle .collapsed .accordion-icon i {
+    color: var(--bs-gray-400) !important;
+}

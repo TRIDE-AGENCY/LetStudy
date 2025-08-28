@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Education;
 use App\Models\Product;
+use App\Models\Province;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,9 +15,13 @@ class UserController extends Controller
 {
     public function userRegister()
     {
+        $provinces = Province::all();
+        $cities = City::all();
         $educations = Education::all();
 
         return inertia('Auth/User/Register', [
+            'provinces' => $provinces,
+            'cities' => $cities,
             'educations' => $educations,
         ]);
     }
@@ -25,23 +31,26 @@ class UserController extends Controller
         $request->validate([
             'name'          => 'required|string',
             'gender'        => 'required|string',
-            'birth_place'   => 'nullable',
+            'province_id'   => 'nullable',
+            'city_id'       => 'nullable',
             'birth_date'    => 'nullable',
             'education'     => 'required',
             'email'         => 'required|unique:users',
-            'password'      => 'required|confirmed',
+            'password'      => 'required|confirmed|min:8',
         ], [
             'gender.required' => 'Jenis kelamin tidak boleh kosong.',
             'email.unique' => 'Email ini sudah digunakan, silakan pakai email lain.',
             'password.required' => 'Kata sandi tidak boleh kosong.',
             'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'password.min'        => 'Kata sandi minimal 8 karakter.',
         ]);
 
         User::create([
             'name'          => $request->name,
             'role'          => 'User',
             'gender'        => $request->gender,
-            'birth_place'   => $request->birth_place,
+            'province_id'   => $request->province_id,
+            'city_id'       => $request->city_id,
             'birth_date'    => $request->birth_date,
             'education'     => $request->education,
             'email'         => $request->email,
@@ -84,11 +93,15 @@ class UserController extends Controller
 
         $userId = auth()->guard('web')->user()->id;
         $user = User::find($userId);
+        $provinces = Province::all();
+        $cities = City::all();
         $educations = Education::all();
 
         return inertia('User/User/Index', [
             'menuProducts' => $menuProducts,
             'user' => $user,
+            'provinces' => $provinces,
+            'cities' => $cities,
             'educations' => $educations,
         ]);
     }
@@ -99,17 +112,19 @@ class UserController extends Controller
         $request->validate([
             'name'             => 'required|string',
             'gender'           => 'required|string',
-            'birth_place'      => 'nullable',
+            'province_id'      => 'nullable',
+            'city_id'          => 'nullable',
             'birth_date'       => 'nullable',
             'education'        => 'required',
             'email'            => 'required|unique:users,email,' . $user->id,
             'current_password' => 'required_with:password',
-            'password'         => 'nullable|confirmed',
+            'password'         => 'nullable|confirmed|min:8',
         ], [
             'gender.required' => 'Jenis kelamin tidak boleh kosong.',
             'email.unique' => 'Email ini sudah digunakan, silakan pakai email lain.',
             'current_password.required_with' => 'Kata sandi lama wajib diisi jika ingin mengganti kata sandi baru.',
             'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'password.min'        => 'Kata sandi minimal 8 karakter.',
         ]);
 
         if ($request->filled('password')) {
@@ -121,7 +136,8 @@ class UserController extends Controller
         $data = [
             'name'          => $request->name,
             'gender'        => $request->gender,
-            'birth_place'   => $request->birth_place,
+            'province_id'   => $request->province_id,
+            'city_id'       => $request->city_id,
             'birth_date'    => $request->birth_date,
             'education'     => $request->education,
             'email'         => $request->email,

@@ -35,7 +35,7 @@
                             <Link class="nav-link active" href="#">Playlist</Link>
                         </li>
                     </ul>
-                    <div class="d-flex flex-grow gap-4 flex-column flex-sm-row mb-8">
+                    <div v-if="playlists.data.length > 0" class="d-flex flex-grow gap-4 flex-column flex-sm-row mb-8">
                         <div class="flex-grow-1">
                             <h1 class="text-dark lh-base fs-3x fs-md-2x mb-1">Belajar Lewat Video ✨</h1>
                             <p class="text-gray-600 fs-4 mb-0">
@@ -45,9 +45,9 @@
                     </div>
                     <div class="row g-6">
                         <div class="text-center py-10" v-if="playlists.data.length === 0">
-                            <img src="/assets/media/illustrations/empty.png"
-                                alt="Tidak ada data" class="mh-225px img-fluid mb-10">
-                            <h2 class="text-dark mb-4">Belum Ada Playlist</h2>
+                            <img src="/assets/media/images/stay-tuned.png"
+                                alt="Tidak ada data" class="mh-350px img-fluid">
+                            <h1 class="text-dark mb-4">Stay Tune Ya! ✨</h1>
                             <p class="text-gray-600 fs-4 mb-0">Belum ada playlist yang tersedia. Cek kembali nanti ya!</p>
                         </div>
                         <div v-else v-for="playlist in playlists.data" :key="playlist.id" class="col-12 col-md-6 col-xxl-4">

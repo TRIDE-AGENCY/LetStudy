@@ -45,9 +45,14 @@
                                             </div>
                                         </div>
                                         <div class="mb-5 fv-row">
-                                            <label class="required form-label fs-6">Kategori</label>
-                                            <select class="form-select form-control" required v-model="form.sub_product_id" :class="{ 'is-invalid': errors.sub_product_id }">
-                                                <option v-for="(sub_product, index) in subProducts" :key="index"
+                                            <label class="form-label fs-6">Kategori</label>
+                                            <select class="form-select form-control" v-model="form.sub_product_id"
+                                                :class="[
+                                                    { 'is-invalid': errors.sub_product_id },
+                                                    !form.sub_product_id ? 'text-gray-400' : 'text-dark'
+                                                ]">
+                                                <option value="">Pilih kategori</option>
+                                                <option class="text-dark" v-for="(sub_product, index) in subProducts" :key="index"
                                                     :value="sub_product.id">{{ sub_product . title }}</option>
                                             </select>
                                             <div v-if="errors.sub_product_id" class="text-mydanger mt-2">

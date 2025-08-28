@@ -35,7 +35,7 @@
                             <Link class="nav-link" :href="`/member-area/${product.slug}/${subProduct.slug}/playlists`">Playlist</Link>
                         </li>
                     </ul>
-                    <div class="d-flex flex-grow gap-4 flex-column flex-sm-row mb-8">
+                    <div v-if="tryouts.length > 0" class="d-flex flex-grow gap-4 flex-column flex-sm-row mb-8">
                         <div class="flex-grow-1">
                             <h1 class="text-dark lh-base fs-3x fs-md-2x mb-1">Siap Tryout? 📝</h1>
                             <p class="text-gray-600 fs-4 mb-0">
@@ -45,10 +45,10 @@
                     </div>
                     <div class="row g-6">
                         <div class="text-center py-10" v-if="tryouts.length === 0">
-                            <img src="/assets/media/illustrations/empty.png"
-                                alt="Tidak ada data" class="mh-225px img-fluid mb-10">
-                            <h2 class="text-dark mb-4">Belum Ada Tryout</h2>
-                            <p class="text-gray-600 fs-4 mb-0">Silakan tambahkan Tryout baru untuk akses latihan.</p>
+                            <img src="/assets/media/images/stay-tuned.png"
+                                alt="Tidak ada data" class="mh-350px img-fluid">
+                            <h1 class="text-dark mb-4">Stay Tune Ya! ✨</h1>
+                            <p class="text-gray-600 fs-4 mb-0">Belum ada tryout yang tersedia. Cek kembali nanti ya!</p>
                         </div>
                         <div v-else v-for="(data, index) in tryouts" :key="index" class="col-12 col-md-6 col-xxl-4">
                             <div class="card card-hover rounded-4 border border-gray-300 h-100">

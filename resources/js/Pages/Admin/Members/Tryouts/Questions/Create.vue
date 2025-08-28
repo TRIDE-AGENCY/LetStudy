@@ -31,15 +31,6 @@
                         <div class="card rounded-4 border border-gray-300">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
                                 <h3 class="required mb-0">Pertanyaan</h3>
-                                <div class="collapsible toggle collapsed"
-                                    data-bs-toggle="collapse" data-bs-target="#question-collapse">
-                                    <button type="button" class="toggle-off btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0">
-                                        Tambah Gambar
-                                    </button>
-                                    <button type="button" class="toggle-on btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0">
-                                        Hapus Gambar
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body p-6">
                                 <div class="fv-row">
@@ -52,89 +43,65 @@
                                         {{ errors . question }}
                                     </div>
                                 </div>
-                                <div id="question-collapse" class="mt-5 fv-row collapse">
-                                    <div id="question-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
-                                        <div class="dz-message needsclick flex-column text-center gap-5 p-5">
-                                            <i class="ri-image-add-line text-myprimary fs-3x"></i>
-                                            <div>
-                                                <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
-                                                <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div v-if="errors.question_image" class="text-mydanger mt-2">
-                                        {{ errors . question_image }}
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="card rounded-4 border border-gray-300 mt-6">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
-                                <h3 class="required mb-0">Pilihan Jawaban</h3>
+                                <h3 class="mb-0">Pilihan Jawaban</h3>
                             </div>
                             <div class="card-body p-6">
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">A</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_1"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan A disini..."
-                                            :class="{ 'is-invalid': errors.option_1 }" />
-                                    </div>
-                                    <div v-if="errors.option_1" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan A</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_1" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_1" class="text-mydanger mt-2">
                                         {{ errors . option_1 }}
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">B</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_2"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan B disini..."
-                                            :class="{ 'is-invalid': errors.option_2 }" />
-                                    </div>
-                                    <div v-if="errors.option_2" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan B</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_2" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_2" class="text-mydanger mt-2">
                                         {{ errors . option_2 }}
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">C</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_3"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan C disini..."
-                                            :class="{ 'is-invalid': errors.option_3 }" />
-                                    </div>
-                                    <div v-if="errors.option_3" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan C</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_3" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_3" class="text-mydanger mt-2">
                                         {{ errors . option_3 }}
                                     </div>
                                 </div>
                                 <div class="mb-5 fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">D</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_4"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan D disini..."
-                                            :class="{ 'is-invalid': errors.option_4 }" />
-                                    </div>
-                                    <div v-if="errors.option_4" class="text-danger mt-2">
+                                    <label class="required form-label fs-6">Pilihan D</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_4" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_4" class="text-mydanger mt-2">
                                         {{ errors . option_4 }}
                                     </div>
                                 </div>
-                                <div class="fv-row">
-                                    <div class="input-group">
-                                        <span class="input-group-text w-45px d-flex justify-content-center"
-                                            id="basic-addon1">E</span>
-                                        <input type="text" class="form-control fs-5" v-model="form.option_5"
-                                            aria-describedby="basic-addon1" required
-                                            placeholder="Masukkan pilihan E disini..."
-                                            :class="{ 'is-invalid': errors.option_5 }" />
-                                    </div>
-                                    <div v-if="errors.option_5" class="text-danger mt-2">
+                                <div class="mb-5 fv-row">
+                                    <label class="required form-label fs-6">Pilihan E</label>
+                                    <Editor 
+                                        :api-key="TinyMCEApiKey" 
+                                        v-model="form.option_5" 
+                                        :init="editorInit"
+                                    />
+                                    <div v-if="errors.option_5" class="text-mydanger mt-2">
                                         {{ errors . option_5 }}
                                     </div>
                                 </div>
@@ -188,7 +155,7 @@
                                         E
                                     </label>
                                 </div>
-                                <div v-if="errors.answer" class="text-danger mt-2">
+                                <div v-if="errors.answer" class="text-mydanger mt-2">
                                     {{ errors . answer }}
                                 </div>
                             </div>
@@ -196,15 +163,6 @@
                         <div class="card rounded-4 border border-gray-300 mt-6">
                             <div class="card-header p-6 d-flex flex-row m-0 border-bottom border-gray-300" style="min-height: unset;">
                                 <h3 class="mb-0">Pembahasan</h3>
-                                <div class="collapsible toggle collapsed"
-                                    data-bs-toggle="collapse" data-bs-target="#explanation-collapse">
-                                    <button type="button" class="toggle-off btn btn-link btn-link-myprimary fs-5 fw-bold mb-0 p-0">
-                                        Tambah Gambar
-                                    </button>
-                                    <button type="button" class="toggle-on btn btn-link btn-link-mydanger fs-5 fw-bold mb-0 p-0">
-                                        Hapus Gambar
-                                    </button>
-                                </div>
                             </div>
                             <div class="card-body p-6">
                                 <div class="fv-row">
@@ -215,20 +173,6 @@
                                     />
                                     <div v-if="errors.explanation" class="text-mydanger mt-2">
                                         {{ errors . explanation }}
-                                    </div>
-                                </div>
-                                <div id="explanation-collapse" class="mt-5 fv-row collapse">
-                                    <div id="explanation-dropzone" class="dropzone border-dashed border-myprimary rounded p-5 text-center">
-                                        <div class="dz-message needsclick flex-column text-center gap-5 p-5">
-                                            <i class="ri-image-add-line text-myprimary fs-3x"></i>
-                                            <div>
-                                                <h3 class="fs-5 fw-bold text-gray-900 mb-2">Jatuhkan file di sini / klik untuk mengunggah.</h3>
-                                                <span class="fs-7 fw-semibold text-gray-400">Maksimal 10 MB</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div v-if="errors.explanation_image" class="text-mydanger mt-2">
-                                        {{ errors . explanation_image }}
                                     </div>
                                 </div>
                             </div>
@@ -257,8 +201,7 @@
 <script>
     import LayoutAdmin from '../../../../../Layouts/Admin.vue';
     import { Head, Link, router } from '@inertiajs/vue3';
-    import { reactive, onMounted, onUnmounted } from 'vue';
-    import Dropzone from 'dropzone';
+    import { reactive } from 'vue';
     import Swal from 'sweetalert2';
     import Editor from '@tinymce/tinymce-vue';
 
@@ -282,7 +225,6 @@
         setup(props) {
             const form = reactive({
                 question: '',
-                question_image: null,
                 option_1: '',
                 option_2: '',
                 option_3: '',
@@ -290,17 +232,46 @@
                 option_5: '',
                 answer: '',
                 explanation: '',
-                explanation_image: null,
             });
 
             const editorInit = {
                 menubar: false,
-                plugins: 'advlist lists emoticons autoresize',
-                toolbar:
-                    'undo redo | bold italic underline | bullist numlist | emoticons',
+                plugins: 'advlist lists emoticons autoresize image',
+                toolbar: 'undo redo | bold italic underline | bullist numlist | image emoticons',
                 block_formats: 'Paragraf=p',
                 min_height: 200,
-                max_height: 300,
+                max_height: 600,
+                paste_data_images: true,
+                automatic_uploads: true,
+                images_upload_handler: (blobInfo, progress) => new Promise((resolve, reject) => {
+                    try {
+                        const mime = blobInfo.blob().type || 'image/png';
+                        const dataUrl = `data:${mime};base64,${blobInfo.base64()}`;
+                        resolve(dataUrl); 
+                    } catch (e) {
+                        reject('Gagal mengubah gambar ke base64');
+                    }
+                }),
+
+                file_picker_types: 'image',
+                file_picker_callback: (cb, value, meta) => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+
+                    input.onchange = () => {
+                        const file = input.files?.[0];
+                        if (!file) return;
+
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            cb(reader.result, { title: file.name });
+                        };
+                        reader.readAsDataURL(file);
+                    };
+
+                    input.click();
+                },
                 content_style: `
                     @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
                     body {
@@ -308,50 +279,6 @@
                     }
                 `
             };
-
-            const createDropzone = (selector, { paramName, onSet, maxSizeMB = 10 }) => {
-                return new Dropzone(selector, {
-                    url: '/',              
-                    paramName,
-                    maxFiles: 1,
-                    maxFilesize: maxSizeMB,
-                    acceptedFiles: 'image/jpeg,image/png,image/jpg,image/webp',
-                    autoProcessQueue: false,
-                    addRemoveLinks: true,
-                    dictRemoveFile: 'Hapus',
-                    init: function () {
-                    this.on('addedfile', (file) => {
-                        if (this.files.length > 1) {
-                        this.removeFile(this.files[0]);
-                        }
-                        onSet(file);
-                    });
-                    this.on('removedfile', () => onSet(null));
-                    },
-                });
-            };
-
-            let dzQuestion = null;
-            let dzExplanation = null;
-
-            onMounted(() => {
-                Dropzone.autoDiscover = false;
-
-                dzQuestion = createDropzone('#question-dropzone', {
-                    paramName: 'question_image',
-                    onSet: (file) => { form.question_image = file; },
-                });
-
-                dzExplanation = createDropzone('#explanation-dropzone', {
-                    paramName: 'explanation_image',
-                    onSet: (file) => { form.explanation_image = file; },
-                });
-            });
-
-            onUnmounted(() => {
-                if (dzQuestion) { dzQuestion.destroy(); dzQuestion = null; }
-                if (dzExplanation) { dzExplanation.destroy(); dzExplanation = null; }
-            });
 
             const submit = () => {
                 const submitBtn = document.querySelector('#submit_button');
@@ -369,12 +296,6 @@
                 payload.append('option_5', form.option_5);
                 payload.append('answer', form.answer);
                 payload.append('explanation', form.explanation);
-                if (form.question_image && (form.question_image instanceof File || form.question_image instanceof Blob)) {
-                    payload.append('question_image', form.question_image);
-                }
-                if (form.explanation_image && (form.explanation_image instanceof File || form.explanation_image instanceof Blob)) {
-                    payload.append('explanation_image', form.explanation_image);
-                }
 
                 const cleanup = () => {
                     if (submitBtn) {

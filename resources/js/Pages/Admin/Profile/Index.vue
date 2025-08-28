@@ -67,7 +67,7 @@
                                             <span class="input-group-text" id="basic-addon2">
                                                 <i class="ri-phone-fill fs-3"></i>
                                             </span>
-                                            <input type="text" class="form-control fs-5" placeholder="Masukkan nomor telepon disini..."
+                                            <input type="text" required class="form-control fs-5" placeholder="Masukkan nomor telepon disini..."
                                                 v-model="form.phone" :class="{ 'is-invalid': errors.phone }" />
                                         </div>
                                         <div v-if="errors.phone" class="text-mydanger mt-2">
@@ -80,7 +80,7 @@
                                             <span class="input-group-text" id="basic-addon2">
                                                 <i class="ri-mail-fill fs-3"></i>
                                             </span>
-                                            <input type="text" class="form-control fs-5" placeholder="Masukkan alamat email disini..."
+                                            <input type="text" required class="form-control fs-5" placeholder="Masukkan alamat email disini..."
                                                 v-model="form.email" :class="{ 'is-invalid': errors.email }" />
                                         </div>
                                         <div v-if="errors.email" class="text-mydanger mt-2">
@@ -89,15 +89,25 @@
                                     </div>
                                     <div class="fv-row">
                                         <label class="form-label fs-6">Link Komunitas</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon2">
+                                                <i class="ri-whatsapp-line fs-3"></i>
+                                            </span>
+                                            <input type="text" required class="form-control fs-5" placeholder="Masukkan link whatsapp group disini..."
+                                                v-model="form.whatsapp_community" :class="{ 'is-invalid': errors.whatsapp_community }" />
+                                        </div>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon2">
-                                                <i class="ri-whatsapp-fill fs-3"></i>
+                                                <i class="ri-telegram-2-fill fs-3"></i>
                                             </span>
-                                            <input type="text" class="form-control fs-5" placeholder="Masukkan link komunitas disini..."
-                                                v-model="form.community" :class="{ 'is-invalid': errors.community }" />
+                                            <input type="text" required class="form-control fs-5" placeholder="Masukkan link telegram group disini..."
+                                                v-model="form.telegram_community" :class="{ 'is-invalid': errors.telegram_community }" />
                                         </div>
-                                        <div v-if="errors.community" class="text-mydanger mt-2">
-                                            {{ errors . community }}
+                                        <div v-if="errors.whatsapp_community" class="text-mydanger mt-2">
+                                            {{ errors . whatsapp_community }}
+                                        </div>
+                                        <div v-if="errors.telegram_community" class="text-mydanger mt-2">
+                                            {{ errors . telegram_community }}
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +156,8 @@
                 about: props.profile.about,
                 phone: props.profile.phone,
                 email: props.profile.email,
-                community: props.profile.community,
+                whatsapp_community: props.profile.whatsapp_community,
+                telegram_community: props.profile.telegram_community,
             });
 
             const submit = () => {
@@ -167,7 +178,8 @@
                     about: form.about,
                     phone: form.phone,
                     email: form.email,
-                    community: form.community,
+                    whatsapp_community: form.whatsapp_community,
+                    telegram_community: form.telegram_community,
                 }, {
                     onSuccess: () => {
                         Swal.fire({
@@ -181,9 +193,6 @@
                                 popup: 'swal-custom-icon',
                             }
                         });
-                        form.current_password = '';
-                        form.password = '';
-                        form.password_confirmation = '';
                     },
                     onFinish: cleanup
                 });

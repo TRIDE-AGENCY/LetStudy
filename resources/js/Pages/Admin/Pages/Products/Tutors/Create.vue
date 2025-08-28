@@ -82,8 +82,12 @@
                                         <div class="mb-5 fv-row">
                                             <label class="required form-label fs-6">E-Book</label>
                                             <select class="form-select fs-5" required v-model="form.ebook_id"
-                                                :class="{ 'is-invalid': errors.ebook_id }">
-                                                <option v-for="(ebook, index) in ebooks" :key="index"
+                                                :class="[
+                                                    { 'is-invalid': errors.ebook_id },
+                                                    !form.ebook_id ? 'text-gray-400' : 'text-dark'
+                                                ]">
+                                                <option disabled value="">Pilih e-book</option>
+                                                <option class="text-dark" v-for="(ebook, index) in ebooks" :key="index"
                                                     :value="ebook.id">{{ ebook . title }}</option>
                                             </select>
                                             <div v-if="errors.ebook_id" class="text-mydanger mt-2">

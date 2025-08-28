@@ -12,7 +12,7 @@
                         <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0 mb-2">
                             Member Area
                         </h1>
-                        <p class="fs-4 text-gray-600 m-0">Selamat Datang {{ $page . props . auth . user . name }}</p>
+                        <p class="fs-4 text-gray-600 m-0">Selamat datang {{ $page . props . auth . user . name }}, mau belajar apa hari ini studemates?</p>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                             LetStudy Teman Belajar Tanpa Batas
                         </h2> 
                         <p class="text-white fs-4 mb-0 opacity-75">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            Belajar tidak seharusnya terasa sendiri. Bersama LetStudy, kamu punya partner yang selalu siap menemani perjalanan akademik dan pengembangan diri. Mulai dari persiapan ujian masuk PTN, persiapan tes kecakapan berbahasa Inggris, persiapan beasiswa + kuliah ke luar negeri, hingga persiapan karir kamu yang super lengkap untuk membangun masa depan, LetStudy hadir sebagai #YourStudyPartner yang memahami kebutuhanmu. Kami percaya setiap orang berhak mendapatkan akses belajar yang mudah, relevan, dan gratis. Dengan dukungan tutor, komunitas, dan materi terkurasi, LetStudy menjadi ruang belajar inklusif tempat kamu bisa bertumbuh tanpa batas. Melalui optimalisasi ekonomi syariah, LetStudy semakin mampu mewujudkan pendidikan gratis yang lebih merata dan berkeadilan.
                         </p>
                     </div>
 
@@ -41,20 +41,32 @@
                                 <div class="d-flex flex-column gap-2">
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mysecondary ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Koleksi eBook (Kitab Sakti) TERKURASI sesuai kebutuhan-mu!
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mysecondary ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bahan belajar dibuat oleh tutor yang ahli di bidangnya.
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mysecondary ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bisa diakses kapan saja dan di mana saja. 
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-mysecondary ri-checkbox-circle-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Ringkas, relevan, dan paket komplit untuk menunjang belajar-mu!
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-mysecondary ri-checkbox-circle-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Dilengkapi dengan materi pembelajaran, video belajar, latihan soal, serta tips and trick yang memenuhi seluruh metode belajar-mu!
                                         </p>
                                     </div>
                                 </div>
@@ -69,20 +81,32 @@
                                 <div class="d-flex flex-column gap-2">
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mywarning ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Tryout online dengan soal HOTS dan pastinya terkini. 
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mywarning ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Dilengkapi dengan video pembahasan soal yang bantu kamu makin PAHAM! 
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mywarning ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bantu kamu analisis langsung untuk mengetahui kekuatan dan kelemahan belajar.
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-mywarning ri-checkbox-circle-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bantu meningkatkan kepercayaan diri sebelum ujian.
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-mywarning ri-checkbox-circle-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Skoring real-time dan bisa tracking perkembangan belajar melalui fitur rangking!
                                         </p>
                                     </div>
                                 </div>
@@ -97,20 +121,26 @@
                                 <div class="d-flex flex-column gap-2">
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mydanger ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Video pembelajaran dengan materi yang SUPER LENGKAP dan sesuai kebutuhan-mu!
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mydanger ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Dibuat terstruktur agar proses belajar-mu lebih fokus dan bisa praktik langsung.
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-start gap-3">
                                         <i class="fs-4 mt-1 text-mydanger ri-checkbox-circle-fill"></i>
-                                        <p class="text-gray-600 fs-4 mb-0">
-                                            Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Bantu kamu memahami lebih dalam setelah membaca materi di eBook.
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-start gap-3">
+                                        <i class="fs-4 mt-1 text-mydanger ri-checkbox-circle-fill"></i>
+                                        <p class="text-gray-600 fs-5 mb-0">
+                                            Kamu juga bisa memilih topik materi yang kamu rasa ingin memahami lebih dalam agar sesuai dengan minat & target belajar-mu!
                                         </p>
                                     </div>
                                 </div>

@@ -152,13 +152,17 @@
                                     <div class="mb-5 fv-row">
                                         <label class="required form-label fs-6">Departemen</label>
                                         <select class="form-select fs-5" required v-model="form.department"
-                                            :class="{ 'is-invalid': errors.department }">
-                                            <option value="Pimpinan">Pimpinan</option>
-                                            <option value="Marketing Creative">Marketing Creative</option>
-                                            <option value="Strategic Partnership">Strategic Partnership</option>
-                                            <option value="Administration & Finance">Administration & Finance</option>
-                                            <option value="Product & Project Manager">Product & Project Manager</option>
-                                            <option value="Education Development">Education Development</option>
+                                            :class="[
+                                                { 'is-invalid': errors.department },
+                                                !form.department ? 'text-gray-400' : 'text-dark'
+                                            ]">
+                                            <option disabled value="">Pilih departemen</option>
+                                            <option class="text-dark" value="Pimpinan">Pimpinan</option>
+                                            <option class="text-dark" value="Marketing Creative">Marketing Creative</option>
+                                            <option class="text-dark" value="Strategic Partnership">Strategic Partnership</option>
+                                            <option class="text-dark" value="Administration & Finance">Administration & Finance</option>
+                                            <option class="text-dark" value="Product & Project Manager">Product & Project Manager</option>
+                                            <option class="text-dark" value="Education Development">Education Development</option>
                                         </select>
                                         <div v-if="errors.department" class="text-mydanger mt-2">
                                             {{ errors . department }}
@@ -168,11 +172,15 @@
                                         class="mb-5 fv-row">
                                         <label class="required form-label fs-6">Status</label>
                                         <select class="form-select fs-5" required v-model="form.status"
-                                            :class="{ 'is-invalid': errors.status }">
-                                            <option value="chief">Chief Officer</option>
-                                            <option value="head">Head Department</option>
-                                            <option value="vice">Vice Head Department</option>
-                                            <option value="member">Member</option>
+                                            :class="[
+                                                { 'is-invalid': errors.status },
+                                                !form.status ? 'text-gray-400' : 'text-dark'
+                                            ]">
+                                            <option disabled value="">Pilih status</option>
+                                            <option class="text-dark" value="chief">Chief Officer</option>
+                                            <option class="text-dark" value="head">Head Department</option>
+                                            <option class="text-dark" value="vice">Vice Head Department</option>
+                                            <option class="text-dark" value="member">Member</option>
                                         </select>
                                         <div v-if="errors.status" class="text-mydanger mt-2">
                                             {{ errors . status }}

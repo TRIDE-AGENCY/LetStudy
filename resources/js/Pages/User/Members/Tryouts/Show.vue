@@ -52,19 +52,18 @@
                                 </div>
                                 <div class="card-body p-7 ">
                                     <div v-if="question_active !== null">
-                                        <div class="fs-5 fw-semibold text-dark user-select-none"
+                                        <div id="question-editor" class="fs-5 fw-semibold text-dark user-select-none"
                                             v-html="question_active.question.question"></div>
-                                        <img v-if="question_active.question.question_image" class="img-fluid rounded mt-1 mh-300px" :src="`/storage/${question_active.question.question_image}`" alt="Gambar Soal">
                                         <div class="d-flex flex-column gap-3 mt-6">
                                             <div v-for="(answer, index) in answer_order" :key="index"
-                                                class="user-select-none d-flex align-items-center cursor-pointer p-4 border border-gray-300 rounded gap-3"
+                                                class="user-select-none d-flex align-items-center cursor-pointer px-4 pt-4 border border-gray-300 rounded gap-3"
                                                 @click="submitAnswer(question_active.question.tryout.id, question_active.question.id, answer)"
                                                 :class="{ 'btn-tryout-active': answer == question_active.answer }">
-                                                <div class="text-center fs-5 w-30px" style="flex-shrink: 0;"
+                                                <div class="text-center fs-5 w-30px pb-4" style="flex-shrink: 0;"
                                                     :class="{ 'fw-bolder': answer == question_active.answer }">
                                                     {{ options[index] }}
                                                 </div>
-                                                <div class="fs-5 w-100"
+                                                <div class="fs-5 w-100" id="question-editor"
                                                     v-html="question_active.question['option_'+answer]">
                                                 </div>
                                             </div>

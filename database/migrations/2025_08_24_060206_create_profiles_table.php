@@ -16,7 +16,8 @@ return new class extends Migration
             $table->text('about');
             $table->string('phone');
             $table->string('email');
-            $table->string('community');
+            $table->string('whatsapp_community');
+            $table->string('telegram_community');
             $table->timestamps();
         });
     }

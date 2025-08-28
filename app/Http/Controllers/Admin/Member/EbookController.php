@@ -17,6 +17,7 @@ class EbookController extends Controller
         $menuProducts = Product::with('subProducts')->get();
         $ebooks = Ebook::where('sub_product_id', $subProduct->id)
             ->with('subProduct')
+            ->withCount('tutors')
             ->latest()
             ->paginate(100);
 
@@ -83,6 +84,12 @@ class EbookController extends Controller
     public function ebookShow(Product $product, SubProduct $subProduct, Ebook $ebook)
     {
         $menuProducts = Product::with('subProducts')->get();
+
+        $ebook = Ebook::where('id', $ebook->id)
+            ->where('sub_product_id', $subProduct->id)
+            ->withCount('tutors')
+            ->with('tutors')
+            ->firstOrFail();
 
         return inertia('Admin/Members/Ebooks/Show', [
             'menuProducts' => $menuProducts,
